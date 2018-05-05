@@ -7,33 +7,35 @@ import { Widget, addResponseMessage } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
 
 class ChatWidget extends Component {
+  chatReference = firebase.database().ref('chat_msg_4_reals');
+  state = {"key": "cal is a dog"};
   constructor(props) {
     super(props);
-
-    this.state = {
-      voteItems: []
-    };
   }
 
   handleNewUserMessage = (newMessage) => {
-    console.log(`New message incomig! ${newMessage}`);
-    // TODO: Send to fire base stuff.
-    addResponseMessage("firebase response here");
+    console.log(`New message incomig, pushing to firebase! ${newMessage}`);
+    const genkey = this.chatReference.push().key;
+    this.setState({
+      key: genkey
+    }, () => { this.chatReference.child(genkey).set(newMessage) });
   };
 
   componentDidMount() {
     console.log(this.props);
-    const dataRef = firebase.database().ref('chat_msg');
-    console.log('firebase stuff');
-    console.log(dataRef);
-    dataRef.once('value').then(snapshot => {
-      console.log("Value");
-      console.log(snapshot);
-    })
-    //   .then(snapshot => {
-    //     this.setState({ voteItems: snapshot.val() || [] });
-    //   })
-    //   .catch(e => console.log(e));
+
+    // Updates chat from the server.
+    this.chatReference.on('child_added', (snapshot) => {
+      console.log("firebase chat: on child added: " + snapshot.val() + ", key: " + snapshot.key);
+      // Don't push msg you sent.
+      if (this.state.key === snapshot.key) {
+        return;
+      }
+      console.log("HERE!");
+      console.log(snapshot.key);
+      console.log(this.state.key);
+      addResponseMessage(snapshot.val());
+    }).bind(this);
   }
 
   render() {

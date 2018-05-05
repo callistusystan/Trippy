@@ -4,7 +4,7 @@ import firebase from 'firebase';
 import { Card, Drawer, Divider, ListItem } from 'material-ui';
 import Ranking from '../components/Ranking';
 import VotingCard from '../components/VotingCard';
-
+import SaveIcon from "../icons/diskette.svg"
 const FlightCard = props => {
     const { style, cardStyle, data, id, path } = props;
     return (
@@ -89,7 +89,11 @@ class FlightDrawer extends React.Component {
         return (
             <Drawer open={open} width={'100%'} containerStyle={{ padding: 70, boxShadow: undefined, ...style }}>
                 <div style={{ background: 'rgba(255,255,255,0.8)', width: '100%', height: '100%', padding: 20 }}>
-                    <span style={{ letterSpacing: 1 }}>SELECT FLIGHT</span>
+                    <div style={{display:"flex"}}>
+                        <span style={{letterSpacing: 1}}>SELECT FLIGHT</span>
+                        <div style={{flex:1}}/>
+                        <div onClick={this.props.closeAll} className={"pointer"}><img height={25} width={25} src={SaveIcon}/></div>
+                    </div>
                     <div style={{ height: 15 }}/>
                     <div style={{ display: 'flex', height: '95%', paddingBottom: 20 }}>
                         <div

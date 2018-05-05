@@ -34,6 +34,14 @@
 }
 
 .conversation-container .header {
-    height: 100px !important;
+    height: 60px !important;
     padding: 8px !important;
+}
+
+.conversation-container .header .title {
+    line-height: 0px !important;
+}
+
+.widget-container button {
+    cursor: pointer !important;
 }

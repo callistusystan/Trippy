@@ -10,7 +10,11 @@ import GiraffeHead from '../images/straightgiraffeface.svg';
 
 class ChatWidget extends Component {
   chatReference = firebase.database().ref('chat_msg');
-  state = {"key": "cal is a god"};
+  state = {"key": "cal is a god", "toggleOpen": false, "unread": 4};
+
+  // unread = 4;
+  // checkUnread = true;
+
   constructor(props) {
     super(props);
   }
@@ -21,6 +25,9 @@ class ChatWidget extends Component {
     this.setState({
       key: genkey
     }, () => { this.chatReference.child(genkey).set(newMessage) });
+
+    if (this.state.toggleOpen) this.state.unread++;
+    console.log(this.state.toggleOpen);
   };
 
   handleIfAddLinkOrStandardMessage = (data) => {
@@ -40,6 +47,8 @@ class ChatWidget extends Component {
     } else {
       addResponseMessage(data);
     }
+    if (this.state.toggleOpen) this.state.unread++;
+    console.log(this.state.toggleOpen);
   };
 
   componentDidMount() {
@@ -55,18 +64,30 @@ class ChatWidget extends Component {
       const data = snapshot.val();
       this.handleIfAddLinkOrStandardMessage(data);
     }).bind(this);
-  }
+  };
+
+  resetUnread() {
+    console.log("reset unread messages");
+    // this.unread = 0;
+    // console.log(this.checkUnread);
+    // this.checkUnread = !this.checkUnread;
+    this.setState({
+      "toggleOpen": !this.state.toggleOpen,
+      "unread": 0
+    });
+    console.log(this.state.toggleOpen);
+  };
 
   render() {
     return (
-      <div>
+      <div onClick={this.resetUnread.bind(this)}>
         <Widget
           title={'trippy chat'}
           subtitle={'Chat with friends!'}
           profileAvatar={GiraffeHead}
           handleNewUserMessage={this.handleNewUserMessage}
           autofocus={true}
-          badge={1}
+          badge={this.state.unread}//{1}
         />
       </div>
     );

@@ -32,3 +32,8 @@
 .snippet {
     word-wrap: break-word;
 }
+
+.conversation-container .header {
+    height: 100px !important;
+    padding: 8px !important;
+}

@@ -75,7 +75,7 @@ class FlightDrawer extends React.Component {
     }
 
     renderFlightItems = () => {
-        return this.state.flightItems.map((data,i) => <FlightCard key={i} data={data} style={{flex:1}}/>);
+        return this.state.flightItems.map((data,i) => <FlightCard key={i} id={i} data={data} style={{flex:1}}/>);
     };
 
     render() {
@@ -104,6 +104,7 @@ class FlightDrawer extends React.Component {
                         <Ranking
                             ranking={this.state.ranking.map(({ index, votes }) => {
                                 const data = this.state.flightItems[ index ];
+                                console.log(this.state.flightItems);
                                 return { title: data.airline, votes };
                             })}
                             path='abc123/flights'

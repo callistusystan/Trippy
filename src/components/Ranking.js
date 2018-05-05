@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
 import { Divider, ListItem } from 'material-ui';
+import Trophy from '../icons/trophy.svg';
 
 class Ranking extends Component {
     constructor(props) {
@@ -12,12 +12,17 @@ class Ranking extends Component {
             return (
                 <ListItem
                     key={i}
-                    innerDivStyle={{ fontSize: 10 }}
+                    innerDivStyle={{ fontSize: 16 }}
                 >
-                    <div style={{width:"100%",display:"flex"}}>
-                    {item.title}
-                    <div style={{flex:1}}/>
-                    {item.votes} votes
+                    <div style={{ width: '100%', display: 'flex', alignItems: 'center' }}>
+                        <h3 style={{alignItems: 'center', minWidth: 32, margin: 0, marginRight: 8 }}># {i+1}</h3>
+                        <span>{item.title}</span>
+                        <div style={{ flex: 1 }}/>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', minWidth: 112 }}>
+                            {i < (this.props.threshold || 1) &&
+                            <img src={Trophy} style={{ margin: '0px 8px', width: 32, height: 32 }}/>}
+                            <strong>{item.votes} vote{item.votes === 1 ? '' : 's'}</strong>
+                        </div>
                     </div>
                 </ListItem>
             );
@@ -37,7 +42,7 @@ class Ranking extends Component {
             }}>
                 <span style={{ fontSize: 24, letterSpacing: 2, color: '#777777' }}>Ranking</span>
                 <Divider/>
-                <div style={{ flex: 1, padding: 8 }}>
+                <div style={{ flex: 1 }}>
                     {
                         this.props.ranking.length > 0 ?
                             this.renderVoteItems() :

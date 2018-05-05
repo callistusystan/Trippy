@@ -7,6 +7,7 @@ import Ranking from "../components/Ranking";
 import FacebookIcon from "../icons/facebook.png"
 import ZomatoIcon from "../icons/zomato.svg"
 import LinesEllipsis from "react-lines-ellipsis"
+import {connect} from "react-redux"
 
 
 const FoodCard = props => {
@@ -41,7 +42,7 @@ const FoodCard = props => {
                     }}
                 />
                 <Divider/>
-                <div>
+                <div style={{ padding: 8 }}>
                     {props.about}
                 </div>
 
@@ -59,6 +60,9 @@ class FoodDrawer extends React.Component {
             foodItems: [],
             ranking: []
         }
+    }
+
+    componentDidMount(){
         const facebook = firebase.database().ref('facebook_data/eat');
         const zomato = firebase.database().ref('zomato_data');
         const votesRef = firebase.database().ref('abc123/eats/').orderByChild('votes');
@@ -69,7 +73,12 @@ class FoodDrawer extends React.Component {
                 const val = childSnapshot.val();
                 vals.push({index, votes: val.votes});
             });
-            this.setState({ranking: _.reverse(vals)});
+            this.setState({ranking: _.reverse(vals)},()=>{
+                if(this.state.foodItems.length>0 && this.state.ranking[0]){
+                    const topFood = this.state.foodItems[this.state.ranking[0]['index']]
+                    this.props.setTopFood(topFood)
+                }
+            });
         });
         const p1 = new Promise(res => facebook.on('value', snapshot => {
             res(snapshot.val())
@@ -79,7 +88,12 @@ class FoodDrawer extends React.Component {
         }));
         Promise.all([p1, p2]).then(res => {
             const [x, y] = res;
-            this.setState({foodItems: [...x, ...y]}, () => console.log(this.state.foodItems));
+            this.setState({foodItems: [...x, ...y]}, () => {
+                if(this.state.foodItems.length>0 && this.state.ranking[0]){
+                    const topFood = this.state.foodItems[this.state.ranking[0]['index']]
+                    this.props.setTopFood(topFood)
+                }
+            });
 
 
         }).catch(err => {
@@ -88,6 +102,7 @@ class FoodDrawer extends React.Component {
     }
 
     render() {
+        console.log(this.props.topFood)
         const {open, style} = this.props
         return (
             <Drawer open={open} width={"100%"} containerStyle={{padding: 70, boxShadow: undefined, ...style}}>
@@ -109,6 +124,7 @@ class FoodDrawer extends React.Component {
                             <span style={{flex: 1, minWidth: 300,}}/>
                         </div>
                         <Ranking
+                            threshold={10}
                             style={{height: '100%'}}
                             ranking={this.state.foodItems.length > 0 && this.state.ranking.map(({index, votes}) => {
                                 console.log(this.state.foodItems)
@@ -128,4 +144,10 @@ class FoodDrawer extends React.Component {
     }
 }
 
-export default FoodDrawer
+const setTopFood = (topFood) => ({type:"setTopFood",topFood})
+
+const mapStateToProps = state => ({
+    topFood:state.rankReducer.topFood
+})
+
+export default connect(mapStateToProps,{setTopFood})(FoodDrawer)

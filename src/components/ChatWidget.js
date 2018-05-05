@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import { Divider, ListItem } from 'material-ui';
 
-import { Widget, addResponseMessage } from 'react-chat-widget';
+import { Widget, addResponseMessage, addLinkSnippet } from 'react-chat-widget';
 
 import 'react-chat-widget/lib/styles.css';
-import './test.css';
+import './chatWidget.css';
 import GiraffeHead from '../images/straightgiraffeface.svg';
 
 class ChatWidget extends Component {
@@ -33,10 +33,24 @@ class ChatWidget extends Component {
       if (this.state.key === snapshot.key) {
         return;
       }
-      console.log("HERE!");
-      console.log(snapshot.key);
-      console.log(this.state.key);
-      addResponseMessage(snapshot.val());
+      const data = snapshot.val();
+      console.log("child_added, data: " + data);
+      if (data.startsWith("http")) {
+        console.log("HERE!");
+        // Assume it is a link.
+        const tokens = data.split(' ');
+        let title = "";
+        if (tokens.length > 1) {
+          // Can form title.
+          title = tokens.slice(1, tokens.length - 1).join(' ');
+        } else {
+          title = 'Here is a link!';
+        }
+        const url = tokens[0];
+        addLinkSnippet({"title": title, "link": url, "target": url});
+      } else {
+        addResponseMessage(snapshot.val());
+      }
     }).bind(this);
   }
 

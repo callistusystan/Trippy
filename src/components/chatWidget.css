@@ -20,3 +20,11 @@
     background-color: red;
     color: red;
 }
+
+.message > .client > .message-text p {
+    word-wrap: break-word;
+}
+
+.message > .response > .message-text p {
+    word-wrap: break-word;
+}

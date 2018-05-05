@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import firebase from 'firebase';
+import { BrowserRouter as Router } from 'react-router-dom';
+import App from './App';
 
 class Root extends Component {
     constructor(props) {
@@ -18,17 +20,11 @@ class Root extends Component {
 
     render() {
         return (
-            <div style={styles.container}>
-            </div>
+            <Router>
+                <App />
+            </Router>
         );
     }
 }
-
-const styles = {
-    container: {
-        minHeight: '100vh',
-        width: '100%'
-    }
-};
 
 export default Root;

@@ -1,8 +1,15 @@
 import React from 'react';
+import logoIcon from '../icons/logo.svg';
+
 
 export default props => (
-    <div style={styles.container}>
-        <span style={styles.logo}>Trippy</span>
+    <div>
+        <div style={{ ...styles.container, ...props.style}}>
+            <img src={logoIcon} style={{
+                height: 60
+            }}/>
+        </div>
+        <div style={{ height: 70 }} />
     </div>
 );
 
@@ -13,7 +20,9 @@ const styles = {
         backgroundColor: '#EEE',
         display: 'flex',
         alignItems: 'center',
-        padding: '0px 16px'
+        padding: '0px 16px',
+        position: 'fixed',
+        zIndex: 1000
     },
     logo: {
         fontFamily: 'Pacifico',

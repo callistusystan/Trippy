@@ -14,7 +14,7 @@ class GiraffeModal extends Component {
 
     handleClick = () => {
         this.setState({ loading: true });
-        
+        setTimeout(() => this.props.changeRoute('/app/abc123'), 500);
     };
 
     render() {
@@ -23,7 +23,7 @@ class GiraffeModal extends Component {
             <div style={styles.container}>
                 <div style={styles.giraffeContainer}>
                     <img src={Giraffe} style={styles.giraffe}/>
-                    <div style={styles.form}>
+                    <form style={styles.form}>
                         <h2 style={{ color: '#555' }}>Create a trip!</h2>
                         <div style={styles.textFieldContainer}>
                             <AutoComplete
@@ -53,13 +53,15 @@ class GiraffeModal extends Component {
                                 loading ?
                                     <CircularProgress />:
                                     <RaisedButton
+                                        type='submit'
                                         onClick={this.handleClick}
                                         disabled={searchTerm === ''}
                                         label='Search'
-                                        primary/>
+                                        primary
+                                    />
                             }
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         );
@@ -69,7 +71,7 @@ class GiraffeModal extends Component {
 const styles = {
     container: {
         width: '100%',
-        height: '100vh',
+        height: 'calc(100vh - 70px)',
         backgroundColor: 'rgba(0, 0, 0, 0.6)',
         position: 'absolute',
         display: 'flex',

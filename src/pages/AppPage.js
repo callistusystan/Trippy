@@ -3,15 +3,13 @@ import AppMap from "../maps/RootMap"
 import {FlatButton} from "material-ui";
 
 import CalendarDrawer from "../drawer/CalendarDrawer"
-
-import logoIcon from "../icons/logo.svg"
-
 import calendarIcon from "../icons/calendar.svg"
 import carIcon from "../icons/car.svg"
 import landmarkIcon from "../icons/landmark.svg"
 import planeIcon from "../icons/plane.svg"
 import sleepIcon from "../icons/sleep.svg"
 import spaguettiIcon from "../icons/spaguetti.svg"
+import TopBar from '../components/TopBar';
 
 const LeftBarButton = props => {
     const {labelName,src,onClick,active} = props
@@ -91,7 +89,6 @@ class AppPage extends Component {
         const {calendarOpen} = this.state
         return (
             <div style={styles.container}>
-                <img src={logoIcon} style={{height:60,top:0,left:0,zIndex:200,position:"fixed",background:"rgba(255,255,255,0.7)"}}/>
                 <this.LeftBar/>
                 <CalendarDrawer open={calendarOpen} style={{background:"rgba(255,255,255,0.5)"}}/>
 

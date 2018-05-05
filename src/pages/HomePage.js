@@ -6,11 +6,12 @@ import TopBar from '../components/TopBar';
 class HomePage extends Component {
 
     render() {
+        const { history: { push } } = this.props;
         return (
             <div style={styles.container}>
                 <TopBar/>
                 <div style={{ flex: 1, position: 'relative' }}>
-                    <GiraffeModal/>
+                    <GiraffeModal changeRoute={push} />
                 </div>
             </div>
         );

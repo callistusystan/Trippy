@@ -84,7 +84,8 @@ class AppPage extends Component {
                 height: '100%',
                 position: 'fixed',
                 justifyContent: 'center',
-                zIndex: 1301
+                zIndex: 1301,
+                width:0
             }}>
                 <LeftBarButton labelName={'CALENDAR'} src={calendarIcon} active={calendarOpen}
                                onClick={() => this.openDrawer('calendarOpen')}/>

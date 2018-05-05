@@ -5,10 +5,11 @@ import { Divider, ListItem } from 'material-ui';
 import { Widget, addResponseMessage } from 'react-chat-widget';
 
 import 'react-chat-widget/lib/styles.css';
-import Giraffe from '../images/giraffe.svg';
+import './test.css';
+import GiraffeHead from '../images/straightgiraffeface.svg';
 
 class ChatWidget extends Component {
-  chatReference = firebase.database().ref('chat_msg_4_reals');
+  chatReference = firebase.database().ref('chat_msg');
   state = {"key": "cal is a dog"};
   constructor(props) {
     super(props);
@@ -43,12 +44,12 @@ class ChatWidget extends Component {
     return (
       <div>
         <Widget
-          title={'bleeh'}
-          subtitle={'chat to friends!'}
-          profileAvatar={Giraffe}
+          title={'trippy chat'}
+          subtitle={'Chat with friends!'}
+          profileAvatar={GiraffeHead}
           handleNewUserMessage={this.handleNewUserMessage}
           autofocus={true}
-          badge={2}
+          badge={1}
         />
       </div>
     );

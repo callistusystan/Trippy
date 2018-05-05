@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import AppMap from '../maps/RootMap';
-import { FlatButton } from 'material-ui';
+import {FlatButton} from 'material-ui';
 
 import {
     AttractionDrawer,
@@ -22,19 +22,19 @@ import TripName from '../components/TripName';
 import ChatWidget from '../components/ChatWidget';
 
 const LeftBarButton = props => {
-    const { labelName, src, onClick, active } = props;
+    const {labelName, src, onClick, active} = props;
     return (
         <FlatButton
             className={'leftBarButton'}
             backgroundColor={'#fff'}
             hoverColor={'#eaeaea'}
-            style={{ width: 210, left: -150, height: 50, borderRadius: 0, position: 'relative', }}
+            style={{width: 210, left: -150, height: 50, borderRadius: 0, position: 'relative',}}
             onClick={onClick}
             secondary={active}
         >
-            <div style={{ width: '100%', display: 'flex', flexDirection: 'row-reverse', alignItems: 'center' }}>
-                <img src={src} width={40} height={40} style={{ marginRight: 10, marginLeft: 10, color: 'red' }}/>
-                <span style={{ flex: 1 }}>{labelName}</span>
+            <div style={{width: '100%', display: 'flex', flexDirection: 'row-reverse', alignItems: 'center'}}>
+                <img src={src} width={30} height={30} style={{marginRight: 15, marginLeft: 15, color: 'red'}}/>
+                <span style={{flex: 1}}>{labelName}</span>
             </div>
         </FlatButton>
     );
@@ -53,19 +53,21 @@ class AppPage extends Component {
     };
 
     DarkBackground = props => {
-        const { calendarOpen, spaguettiOpen, planeOpen, carOpen, landmarkOpen, sleepOpen } = this.state;
-        return(
+        const {calendarOpen, spaguettiOpen, planeOpen, carOpen, landmarkOpen, sleepOpen} = this.state;
+        return (
             <span>
                 {
                     (calendarOpen || planeOpen || spaguettiOpen || carOpen || landmarkOpen || sleepOpen) &&
-                    <div style={{
-                        width: '100%',
-                        height: 'calc(100vh - 70px)',
-                        backgroundColor: 'rgba(0,0,0,0.2)',
-                        zIndex: 100,
-                        position: 'absolute',
-                        transition: 'all 0.2s ease-in-out'
-                    }}/>
+                    <div
+                        style={{
+                            width: '100%',
+                            height: 'calc(100vh - 70px)',
+                            backgroundColor: 'rgba(0,0,0,0.2)',
+                            zIndex: 100,
+                            position: 'absolute',
+                            transition: 'all 0.2s ease-in-out'
+                        }}
+                    />
                 }
             </span>
         )
@@ -80,23 +82,24 @@ class AppPage extends Component {
             landmarkOpen: false,
             sleepOpen: false
         }, () => setTimeout(() => resolve('Done'), 250));
-    }); q
+    });
+    q
 
     openDrawer = drawerName => {
-        const { calendarOpen, spaguettiOpen, planeOpen, carOpen, landmarkOpen, sleepOpen } = this.state;
-        if (this.state[ drawerName ]) {
-            this.setState({ [ drawerName ]: false });
+        const {calendarOpen, spaguettiOpen, planeOpen, carOpen, landmarkOpen, sleepOpen} = this.state;
+        if (this.state[drawerName]) {
+            this.setState({[drawerName]: false});
         } else if (calendarOpen || spaguettiOpen || planeOpen || carOpen || landmarkOpen || sleepOpen) {
             this.closeAllDrawers().then(res => {
-                this.setState({ [ drawerName ]: true });
+                this.setState({[drawerName]: true});
             });
         } else {
-            this.setState({ [ drawerName ]: true });
+            this.setState({[drawerName]: true});
         }
     };
 
     LeftBar = props => {
-        const { calendarOpen, spaguettiOpen, planeOpen, carOpen, landmarkOpen, sleepOpen } = this.state;
+        const {calendarOpen, spaguettiOpen, planeOpen, carOpen, landmarkOpen, sleepOpen} = this.state;
         return (
             <div style={{
                 display: 'flex',
@@ -106,7 +109,7 @@ class AppPage extends Component {
                 position: 'fixed',
                 justifyContent: 'center',
                 zIndex: 1301,
-                width:0
+                width: 0
             }}>
                 <LeftBarButton labelName={'CALENDAR'} src={calendarIcon} active={calendarOpen}
                                onClick={() => this.openDrawer('calendarOpen')}/>
@@ -127,21 +130,33 @@ class AppPage extends Component {
 
 
     render() {
-        const { calendarOpen, spaguettiOpen, planeOpen, carOpen, landmarkOpen, sleepOpen, tripName } = this.state;
+        const {calendarOpen, spaguettiOpen, planeOpen, carOpen, landmarkOpen, sleepOpen, tripName} = this.state;
         return (
             <div style={styles.container}>
                 <TopBar>
                     <TripName onChange={event => this.setState({ tripName: event.target.value })} name={tripName} />
                     <ChatWidget/>
                 </TopBar>
-                <div style={{ width: '100%', height: 'calc(100vh - 70px)'}}>
+                <div style={{width: '100%', height: 'calc(100vh - 70px)'}}>
                     <this.LeftBar/>
-                    <CalendarDrawer open={calendarOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', backgroundColor: undefined }}/>
-                    <FlightDrawer open={planeOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', backgroundColor: undefined }}/>
-                    <FoodDrawer open={spaguettiOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', backgroundColor: undefined }}/>
-                    <TransportDrawer open={carOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', backgroundColor: undefined }}/>
-                    <AttractionDrawer open={landmarkOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', backgroundColor: undefined }}/>
-                    <AccommodationDrawer open={sleepOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', backgroundColor: undefined }}/>
+                    <CalendarDrawer open={calendarOpen}
+                                    style={{marginTop: 70, height: 'calc(100vh - 70px)', backgroundColor: undefined}}/>
+                    <FlightDrawer open={planeOpen}
+                                  style={{marginTop: 70, height: 'calc(100vh - 70px)', backgroundColor: undefined}}/>
+                    <FoodDrawer open={spaguettiOpen}
+                                style={{marginTop: 70, height: 'calc(100vh - 70px)', backgroundColor: undefined}}/>
+                    <TransportDrawer open={carOpen}
+                                     style={{marginTop: 70, height: 'calc(100vh - 70px)', backgroundColor: undefined}}/>
+                    <AttractionDrawer open={landmarkOpen} style={{
+                        marginTop: 70,
+                        height: 'calc(100vh - 70px)',
+                        backgroundColor: undefined
+                    }}/>
+                    <AccommodationDrawer open={sleepOpen} style={{
+                        marginTop: 70,
+                        height: 'calc(100vh - 70px)',
+                        backgroundColor: undefined
+                    }}/>
                     <this.DarkBackground/>
                     <AppMap/>
                 </div>

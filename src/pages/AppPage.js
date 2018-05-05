@@ -20,6 +20,7 @@ import planeIcon from '../icons/plane.svg';
 import sleepIcon from '../icons/sleep.svg';
 import spaguettiIcon from '../icons/spaguetti.svg';
 import TopBar from '../components/TopBar';
+import TripName from '../components/TripName';
 
 const LeftBarButton = props => {
     const { labelName, src, onClick, active } = props;
@@ -108,7 +109,9 @@ class AppPage extends Component {
         const { calendarOpen, spaguettiOpen, planeOpen, carOpen, landmarkOpen, sleepOpen } = this.state;
         return (
             <div style={styles.container}>
-                <TopBar/>
+                <TopBar>
+                    <TripName name={`Pup's Buck Trip`} />
+                </TopBar>
                 <div style={{ width: '100%', height: 'calc(100vh - 70px)' }}>
                     <this.LeftBar/>
                     <CalendarDrawer open={calendarOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', background: 'rgba(255,255,255,0.5)' }}/>

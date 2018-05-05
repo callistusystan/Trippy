@@ -7,3 +7,8 @@
     font-family: Open Sans,Arial,sans-serif;
     box-sizing: border-box;
 }
+
+
+h1 {
+    margin: 0;
+}

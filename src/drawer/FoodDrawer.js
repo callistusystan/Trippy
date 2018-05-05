@@ -60,6 +60,9 @@ class FoodDrawer extends React.Component {
             foodItems: [],
             ranking: []
         }
+    }
+
+    componentDidMount(){
         const facebook = firebase.database().ref('facebook_data/eat');
         const zomato = firebase.database().ref('zomato_data');
         const votesRef = firebase.database().ref('abc123/eats/').orderByChild('votes');

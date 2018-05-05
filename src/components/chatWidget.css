@@ -37,3 +37,6 @@
     height: 100px !important;
     padding: 8px !important;
 }
+.conversation-container{
+    z-index: 1400;
+}

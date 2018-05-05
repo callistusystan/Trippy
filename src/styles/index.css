@@ -14,3 +14,131 @@
 h1 {
     margin: 0;
 }
+
+
+.giraffeHead{
+    animation: animationFrames linear 2s;
+    animation-iteration-count: infinite;
+    transform-origin: 50% 50%;
+    -webkit-animation: animationFrames linear 2s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-transform-origin: 50% 50%;
+    -moz-animation: animationFrames linear 2s;
+    -moz-animation-iteration-count: infinite;
+    -moz-transform-origin: 50% 50%;
+    -o-animation: animationFrames linear 2s;
+    -o-animation-iteration-count: infinite;
+    -o-transform-origin: 50% 50%;
+    -ms-animation: animationFrames linear 2s;
+    -ms-animation-iteration-count: infinite;
+    -ms-transform-origin: 50% 50%;
+}
+
+@keyframes animationFrames{
+    0% {
+        transform:  translate(0px,0px)  rotate(0deg) ;
+    }
+    25% {
+        transform:  translate(0px,-2px)  rotate(-12deg) ;
+    }
+    40% {
+        transform:  translate(0px,-4px)  rotate(0deg) ;
+    }
+    70% {
+        transform:  translate(0px,-7px)  rotate(12deg) ;
+    }
+    85% {
+        transform:  translate(0px,-11px)  ;
+    }
+    100% {
+        transform:  translate(0px,0px)  rotate(0deg) ;
+    }
+}
+
+@-moz-keyframes animationFrames{
+    0% {
+        -moz-transform:  translate(0px,0px)  rotate(0deg) ;
+    }
+    25% {
+        -moz-transform:  translate(0px,-2px)  rotate(-12deg) ;
+    }
+    40% {
+        -moz-transform:  translate(0px,-4px)  rotate(0deg) ;
+    }
+    70% {
+        -moz-transform:  translate(0px,-7px)  rotate(12deg) ;
+    }
+    85% {
+        -moz-transform:  translate(0px,-11px)  ;
+    }
+    100% {
+        -moz-transform:  translate(0px,0px)  rotate(0deg) ;
+    }
+}
+
+@-webkit-keyframes animationFrames {
+    0% {
+        -webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+    }
+    25% {
+        -webkit-transform:  translate(0px,-2px)  rotate(-12deg) ;
+    }
+    40% {
+        -webkit-transform:  translate(0px,-4px)  rotate(0deg) ;
+    }
+    70% {
+        -webkit-transform:  translate(0px,-7px)  rotate(12deg) ;
+    }
+    85% {
+        -webkit-transform:  translate(0px,-11px)  ;
+    }
+    100% {
+        -webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+    }
+}
+
+@-o-keyframes animationFrames {
+    0% {
+        -o-transform:  translate(0px,0px)  rotate(0deg) ;
+    }
+    25% {
+        -o-transform:  translate(0px,-2px)  rotate(-12deg) ;
+    }
+    40% {
+        -o-transform:  translate(0px,-4px)  rotate(0deg) ;
+    }
+    70% {
+        -o-transform:  translate(0px,-7px)  rotate(12deg) ;
+    }
+    85% {
+        -o-transform:  translate(0px,-11px)  ;
+    }
+    100% {
+        -o-transform:  translate(0px,0px)  rotate(0deg) ;
+    }
+}
+
+@-ms-keyframes animationFrames {
+    0% {
+        -ms-transform:  translate(0px,0px)  rotate(0deg) ;
+    }
+    25% {
+        -ms-transform:  translate(0px,-2px)  rotate(-12deg) ;
+    }
+    40% {
+        -ms-transform:  translate(0px,-4px)  rotate(0deg) ;
+    }
+    70% {
+        -ms-transform:  translate(0px,-7px)  rotate(12deg) ;
+    }
+    85% {
+        -ms-transform:  translate(0px,-11px)  ;
+    }
+    100% {
+        -ms-transform:  translate(0px,0px)  rotate(0deg) ;
+    }
+}
+
+.pointer :hover{
+    cursor:pointer;
+}

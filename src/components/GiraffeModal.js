@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import Giraffe from '../images/giraffe.svg';
+import Giraffe from '../images/giraffe.png';
+import GiraffeHead from '../images/straightgiraffeface.svg'
 import { AutoComplete, CircularProgress, RaisedButton } from 'material-ui';
 import cities from '../data/cities_S';
 
@@ -23,7 +24,10 @@ class GiraffeModal extends Component {
             <div style={styles.container}>
                 <h1 style={{ color: '#FFF', fontSize: 48, margin: 0 }}>Real-time trip planning with friends!</h1>
                 <div style={styles.giraffeContainer}>
-                    <img src={Giraffe} style={styles.giraffe}/>
+                    <div style={{display:"flex",justifyContent:"center"}}>
+                        <img className={'giraffeHead'} src={GiraffeHead} style={{position:"absolute",width:210,top:110}}/>
+                        <img src={Giraffe} style={styles.giraffe}/>
+                    </div>
                     <form style={styles.form}>
                         <h2 style={{ color: '#555' }}>Create a trip!</h2>
                         <div style={styles.textFieldContainer}>
@@ -42,10 +46,10 @@ class GiraffeModal extends Component {
                                     fontSize: 24
                                 }}
                                 underlineFocusStyle={{
-                                    borderColor: '#555'
+                                    borderColor: 'rgba(0,0,0,0)'
                                 }}
                                 underlineStyle={{
-                                    borderColor: '#AAA'
+                                    borderColor: 'rgba(0,0,0,0)'
                                 }}
                             />
                         </div>
@@ -86,6 +90,10 @@ const styles = {
     giraffe: {
         width: 'auto',
         height: 600
+    },
+    giraffeHead:{
+        width:'auto',
+        height:70
     },
     form: {
         position: 'absolute',

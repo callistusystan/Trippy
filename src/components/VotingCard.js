@@ -19,8 +19,9 @@ class VotingCard extends Component {
         const { voted } = this.state;
         const { children, path, style } = this.props;
         return (
-            <Card
+            <div
                 style={{
+                    background:"rgba(255,255,255,1)",
                     boxShadow: '0 0 0 0',
                     width: '98%',
                     height: '95%',
@@ -34,7 +35,8 @@ class VotingCard extends Component {
                 }}
             >
                 {children}
-                <CardActions>
+                <div style={{flex:1}}/>
+                <div className={'pointer'} style={{position:"relative",bottom:0,left:0}}>
                     {
                         voted ?
                             <img
@@ -54,8 +56,8 @@ class VotingCard extends Component {
                                 style={{ width: 32, height: 32 }}
                             />
                     }
-                </CardActions>
-            </Card>
+                </div>
+            </div>
         );
     }
 }

@@ -6371,6 +6371,13 @@ react-redux@^5.0.7:
     loose-envify "^1.1.0"
     prop-types "^15.6.0"
 
+react-ripples@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-ripples/-/react-ripples-1.1.2.tgz#059420c253b5b28255ddff4153eae9e00c2963f4"
+  dependencies:
+    prop-types "^15.6.0"
+    react "^16.2.0"
+
 react-router-dom@^4.2.2:
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.2.2.tgz#c8a81df3adc58bba8a76782e946cbd4eae649b8d"
@@ -6459,7 +6466,7 @@ react-transition-group@^1.2.1:
     prop-types "^15.5.6"
     warning "^3.0.0"
 
-react@^16.3.2:
+react@^16.2.0, react@^16.3.2:
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.3.2.tgz#fdc8420398533a1e58872f59091b272ce2f91ea9"
   dependencies:

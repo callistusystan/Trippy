@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import AppPage from './pages/AppPage';
 import HomePage from './pages/HomePage';
 
 class App extends Component {
@@ -8,6 +9,7 @@ class App extends Component {
 
             <div style={styles.container}>
                 <Switch>
+                    <Route path='/app/:id' component={AppPage}/>
                     <Route exact path='/' component={HomePage}/>
                 </Switch>
             </div>

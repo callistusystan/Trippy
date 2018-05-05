@@ -20,7 +20,7 @@ const FlightCard = props => {
                     ...cardStyle
                 }}
             >
-                <h2 style={{ letterSpacing: 1, color: '#555' }}>{data.airline}</h2>
+                <span style={{flex:1}}>{data.airline}</span>
                 <Divider />
                 <div
                     style={{

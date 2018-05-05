@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { TextField } from 'material-ui';
+import { Snackbar, TextField } from 'material-ui';
 import { Icon } from 'antd';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 class TripName extends Component {
 
     state = {
-        editMode: false
+        editMode: false,
+        open: false
     };
 
     render() {
@@ -15,7 +17,7 @@ class TripName extends Component {
         return (
             <div>
                 <form style={{ display: 'flex', alignItems: 'flex-end' }}>
-                    <div style={{ minWidth}}>
+                    <div style={{ minWidth, height: 48 }}>
                         {
                             editMode ?
                                 <TextField
@@ -33,26 +35,48 @@ class TripName extends Component {
                                         borderColor: '#AAA'
                                     }}
                                 /> :
-                                <h1 style={{ margin: 0 }}>{name}</h1>
+                                <h1 style={{ display: 'flex', alignItems: 'center', margin: 0, height: 48 }}>{name}</h1>
                         }
                     </div>
                     <button
                         type='submit'
                         onClick={event => {
                             event.preventDefault();
-                            this.setState({ editMode: !editMode })
+                            this.setState({ editMode: !editMode });
                         }}
                         style={{ visibility: 'hidden' }}
                     />
-                    <Icon
-                        onClick={() => this.setState({ editMode: !editMode })}
-                        type={editMode ? 'check' : 'edit'}
-                        style={{
-                            marginLeft: 8,
-                            cursor: 'pointer'
-                        }}
-                    />
+                    <div>
+                        <CopyToClipboard
+                            text='http://fb-hack-2018.firebaseapp.com/app/abc123'
+                            onCopy={() => this.setState({open: true})}
+                        >
+                            <Icon
+                                type='copy'
+                                style={{
+                                    marginLeft: 8,
+                                    cursor: 'pointer'
+                                }}
+                            />
+                        </CopyToClipboard>
+                        <br/>
+                        <Icon
+                            onClick={() => this.setState({ editMode: !editMode })}
+                            type={editMode ? 'check' : 'edit'}
+                            style={{
+                                marginLeft: 8,
+                                cursor: 'pointer'
+                            }}
+                        />
+                    </div>
                 </form>
+
+                <Snackbar
+                    open={this.state.open}
+                    message='Link copied'
+                    autoHideDuration={3000}
+                    onRequestClose={() => this.setState({ open: false })}
+                />
             </div>
         );
     }

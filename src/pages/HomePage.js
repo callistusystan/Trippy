@@ -24,7 +24,11 @@ const styles = {
         height: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        backgroundImage: `url(${Landing})`
+        backgroundImage: `url(${Landing})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
     }
 };
 

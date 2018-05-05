@@ -20,8 +20,12 @@ const FlightCard = props => {
                     ...cardStyle
                 }}
             >
-                <span style={{flex:1}}>{data.airline}</span>
-                <Divider />
+                <div style={{display: "flex", width: "100%", alignItems: "center", padding:5,height:41}}>
+                    <span style={{letterSpacing: 1}}>{data.airline}</span>
+                    <span style={{flex: 1}}/>
+                    <h3 style={{ color: '#27ae60' }}>{data.price}</h3>
+                </div>
+                <Divider/>
                 <div
                     style={{
                         height: 100,
@@ -32,6 +36,12 @@ const FlightCard = props => {
                         backgroundRepeat: 'no-repeat'
                     }}
                 />
+                <Divider/>
+                <div style={{ padding: 8 }}>
+                    {data.outbound_flights.map(flight => (
+                        <h3>{`${flight.departure_airport} (${flight.departure_time}) - ${flight.arrival_airport} (${flight.arrival_time})`}</h3>
+                    ))}
+                </div>
             </VotingCard>
         </div>
     );
@@ -54,8 +64,8 @@ class FlightDrawer extends React.Component {
 
         const votesRef = firebase.database().ref('abc123/flights/').orderByChild('votes');
         votesRef.on('value', snapshot => {
-            let vals = []
-            snapshot.forEach(function(childSnapshot) {
+            let vals = [];
+            snapshot.forEach(function (childSnapshot) {
                 const index = childSnapshot.key;
                 const val = childSnapshot.val();
                 vals.push({ index, votes: val.votes });
@@ -70,12 +80,14 @@ class FlightDrawer extends React.Component {
 
     render() {
         const { open, style } = this.props;
+
+        if (this.state.flightItems.length === 0) return <div />;
         return (
             <Drawer open={open} width={'100%'} containerStyle={{ padding: 70, boxShadow: undefined, ...style }}>
                 <div style={{ background: 'rgba(255,255,255,0.8)', width: '100%', height: '100%', padding: 20 }}>
-                    <span style={{letterSpacing:1}}>SELECT FLIGHT</span>
+                    <span style={{ letterSpacing: 1 }}>SELECT FLIGHT</span>
                     <div style={{ height: 15 }}/>
-                    <div style={{ display: 'flex', height: '95%',paddingBottom:20 }}>
+                    <div style={{ display: 'flex', height: '95%', paddingBottom: 20 }}>
                         <div
                             style={{
                                 display: 'flex',
@@ -91,7 +103,7 @@ class FlightDrawer extends React.Component {
                         </div>
                         <Ranking
                             ranking={this.state.ranking.map(({ index, votes }) => {
-                                const data = this.state.flightItems[index];
+                                const data = this.state.flightItems[ index ];
                                 return { title: data.airline, votes };
                             })}
                             path='abc123/flights'

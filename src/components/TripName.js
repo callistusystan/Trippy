@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from 'firebase';
 import { Snackbar, TextField } from 'material-ui';
 import { Icon } from 'antd';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
@@ -42,6 +43,9 @@ class TripName extends Component {
                         type='submit'
                         onClick={event => {
                             event.preventDefault();
+                            if (this.state.editMode === true) {
+                                firebase.database().ref('abc123/tripName').set(this.props.name);
+                            }
                             this.setState({ editMode: !editMode });
                         }}
                         style={{ visibility: 'hidden' }}
@@ -61,7 +65,12 @@ class TripName extends Component {
                         </CopyToClipboard>
                         <br/>
                         <Icon
-                            onClick={() => this.setState({ editMode: !editMode })}
+                            onClick={() => {
+                                if (this.state.editMode === true) {
+                                    firebase.database().ref('abc123/tripName').set(this.props.name);
+                                }
+                                this.setState({ editMode: !editMode })
+                            }}
                             type={editMode ? 'check' : 'edit'}
                             style={{
                                 marginLeft: 8,

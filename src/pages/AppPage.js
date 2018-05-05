@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import firebase from 'firebase';
 import AppMap from '../maps/RootMap';
 import {FlatButton} from 'material-ui';
 
@@ -19,6 +20,7 @@ import sleepIcon from '../icons/sleep.svg';
 import spaguettiIcon from '../icons/spaguetti.svg';
 import TopBar from '../components/TopBar';
 import TripName from '../components/TripName';
+import ChatWidget from '../components/ChatWidget';
 
 const LeftBarButton = props => {
     const {labelName, src, onClick, active} = props;
@@ -41,15 +43,25 @@ const LeftBarButton = props => {
 
 class AppPage extends Component {
 
-    state = {
-        calendarOpen: false,
-        spaguettiOpen: false,
-        planeOpen: false,
-        carOpen: false,
-        landmarkOpen: false,
-        sleepOpen: false,
-        tripName: 'Trip to San Francisco'
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            calendarOpen: false,
+            spaguettiOpen: false,
+            planeOpen: false,
+            carOpen: false,
+            landmarkOpen: false,
+            sleepOpen: false,
+            tripName: 'Trip to San Francisco'
+        };
+
+        const roomRef = firebase.database().ref('abc123');
+        roomRef.on('value', snapshot => {
+                const val = snapshot.val();
+                this.setState({ tripName: val.tripName || 'Trip to San Francisco' })
+            });
+    }
 
     DarkBackground = props => {
         const {calendarOpen, spaguettiOpen, planeOpen, carOpen, landmarkOpen, sleepOpen} = this.state;
@@ -127,12 +139,14 @@ class AppPage extends Component {
     };
 
 
+
     render() {
         const {calendarOpen, spaguettiOpen, planeOpen, carOpen, landmarkOpen, sleepOpen, tripName} = this.state;
         return (
             <div style={styles.container}>
                 <TopBar>
-                    <TripName onChange={event => this.setState({tripName: event.target.value})} name={tripName}/>
+                    <TripName onChange={event => this.setState({ tripName: event.target.value })} name={tripName} />
+                    <ChatWidget/>
                 </TopBar>
                 <div style={{width: '100%', height: 'calc(100vh - 70px)'}}>
                     <this.LeftBar/>

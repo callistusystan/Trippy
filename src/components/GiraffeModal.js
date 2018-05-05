@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+import firebase from 'firebase';
 import Giraffe from '../images/giraffe.png';
 import GiraffeHead from '../images/straightgiraffeface.svg'
 import { AutoComplete, CircularProgress, RaisedButton } from 'material-ui';
@@ -15,7 +16,8 @@ class GiraffeModal extends Component {
 
     handleClick = () => {
         this.setState({ loading: true });
-        setTimeout(() => this.props.changeRoute('/app/abc123'), 500);
+        firebase.database().ref('abc123/title').set('Trip to San Francisco')
+            .then(() => this.props.changeRoute('/app/abc123'))
     };
 
     render() {

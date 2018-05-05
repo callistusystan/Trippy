@@ -42,7 +42,7 @@ const FoodCard = props => {
                     }}
                 />
                 <Divider/>
-                <div>
+                <div style={{ padding: 8 }}>
                     {props.about}
                 </div>
 
@@ -121,6 +121,7 @@ class FoodDrawer extends React.Component {
                             <span style={{flex: 1, minWidth: 300,}}/>
                         </div>
                         <Ranking
+                            threshold={10}
                             style={{height: '100%'}}
                             ranking={this.state.foodItems.length > 0 && this.state.ranking.map(({index, votes}) => {
                                 console.log(this.state.foodItems)

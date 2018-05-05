@@ -1,0 +1,34 @@
+.conversation-container > .header {
+    background-color: #9ebe62;
+}
+
+.message > .response {
+    background-color: #dcdcdc;
+    color: black;
+}
+
+.message > .client {
+    background-color: #ffdd9b;
+    color: black;
+}
+
+.launcher {
+    background-color: #9ebe62;
+}
+
+.launcher > .badge {
+    background-color: red;
+    color: red;
+}
+
+.message > .client > .message-text p {
+    word-wrap: break-word;
+}
+
+.message > .response > .message-text p {
+    word-wrap: break-word;
+}
+
+.snippet {
+    word-wrap: break-word;
+}

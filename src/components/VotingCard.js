@@ -36,7 +36,7 @@ class VotingCard extends Component {
             >
                 {children}
                 <div style={{flex:1}}/>
-                <div className={'pointer'} style={{position:"relative",bottom:0,left:0}}>
+                <div className={'pointer'} style={{position:"relative",bottom:0,right:0,display: 'flex', justifyContent: 'flex-end'}}>
                     {
                         voted ?
                             <img

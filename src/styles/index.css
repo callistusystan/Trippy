@@ -7,3 +7,5 @@
     font-family: Open Sans,Arial,sans-serif;
     box-sizing: border-box;
 }
+
+.grow:hover { transform: scale(1.04); }

@@ -81,7 +81,7 @@ class FlightDrawer extends React.Component {
                                 display: 'flex',
                                 flexWrap: 'wrap',
                                 overflowY: 'scroll',
-                                height: '100%',
+                                height: '90%',
                             }}
                         >
                             {this.renderFlightItems()}

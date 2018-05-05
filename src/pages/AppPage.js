@@ -32,7 +32,7 @@ const LeftBarButton = props => {
             secondary={active}
         >
             <div style={{ width: '100%', display: 'flex', flexDirection: 'row-reverse', alignItems: 'center' }}>
-                <img src={src} width={40} height={40} style={{ marginRight: 10, marginLeft: 10, color: 'red' }}/>
+                <img src={src} width={30} height={30} style={{ marginRight: 15, marginLeft: 15, color: 'red' }}/>
                 <span style={{ flex: 1 }}>{labelName}</span>
             </div>
         </FlatButton>

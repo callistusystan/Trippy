@@ -19,6 +19,7 @@
 
 .launcher {
     background-color: #9ebe62;
+    cursor: pointer;
 }
 
 .launcher > .badge {
@@ -28,6 +29,7 @@
     width: 20px;
     right: -3px;
     top: -3px;
+    display: block; /* TODO: make none when no notifications */
 }
 
 .message > .client > .message-text p {
@@ -42,10 +44,6 @@
     word-wrap: break-word;
 }
 
-.conversation-container .header {
-    height: 100px !important;
-    padding: 8px !important;
-}
 .conversation-container{
     z-index: 1400;
 }

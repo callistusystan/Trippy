@@ -40,11 +40,11 @@ class ChatWidget extends Component {
     } else {
       addResponseMessage(data);
     }
+
+    console.log(this);
   };
 
   componentDidMount() {
-    console.log(this.props);
-
     // Updates chat from the server.
     this.chatReference.on('child_added', (snapshot) => {
       console.log("firebase chat: on child added: " + snapshot.val() + ", key: " + snapshot.key);

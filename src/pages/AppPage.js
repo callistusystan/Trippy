@@ -18,6 +18,7 @@ import planeIcon from '../icons/plane.svg';
 import sleepIcon from '../icons/sleep.svg';
 import spaguettiIcon from '../icons/spaguetti.svg';
 import TopBar from '../components/TopBar';
+import TripName from '../components/TripName';
 
 const LeftBarButton = props => {
     const { labelName, src, onClick, active } = props;
@@ -106,15 +107,31 @@ class AppPage extends Component {
         const { calendarOpen, spaguettiOpen, planeOpen, carOpen, landmarkOpen, sleepOpen } = this.state;
         return (
             <div style={styles.container}>
-                <TopBar/>
-                <div style={{ width: '100%', height: 'calc(100vh - 70px)' }}>
+                <TopBar>
+                    <TripName name={`Pup's Buck Trip`} />
+                </TopBar>
+                <div style={{ width: '100%', height: 'calc(100vh - 70px)'}}>
                     <this.LeftBar/>
-                    <CalendarDrawer open={calendarOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', background: 'rgba(255,255,255,0.5)' }}/>
-                    <FlightDrawer open={planeOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', background: 'rgba(255,255,255,0.5)' }}/>
-                    <FoodDrawer open={spaguettiOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', background: 'rgba(255,255,255,0.5)' }}/>
-                    <TransportDrawer open={carOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', background: 'rgba(255,255,255,0.5)' }}/>
-                    <AttractionDrawer open={landmarkOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', background: 'rgba(255,255,255,0.5)' }}/>
-                    <AccommodationDrawer open={sleepOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', background: 'rgba(255,255,255,0.5)' }}/>
+                    <CalendarDrawer open={calendarOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', backgroundColor: undefined }}/>
+                    <FlightDrawer open={planeOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', backgroundColor: undefined }}/>
+                    <FoodDrawer open={spaguettiOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', backgroundColor: undefined }}/>
+                    <TransportDrawer open={carOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', backgroundColor: undefined }}/>
+                    <AttractionDrawer open={landmarkOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', backgroundColor: undefined }}/>
+                    <AccommodationDrawer open={sleepOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', backgroundColor: undefined }}/>
+
+                    {
+                        (calendarOpen || planeOpen || spaguettiOpen || carOpen || landmarkOpen || sleepOpen) &&
+                        <div style={{
+                            width: '100%',
+                            height: 'calc(100vh - 70px)',
+                            backgroundColor: 'rgba(0,0,0,0.2)',
+                            zIndex: 100,
+                            position: 'absolute',
+                            transition: 'all 0.2s ease-in-out'
+                        }}/>
+                    }
+
+
                     <AppMap/>
                 </div>
             </div>

@@ -2,14 +2,20 @@ import React from 'react';
 import logoIcon from '../icons/logo.svg';
 
 
-export default props => (
+export default ({ children, style }) => (
     <div>
-        <div style={{ ...styles.container, ...props.style}}>
-            <img src={logoIcon} style={{
-                height: 60
-            }}/>
+        <div style={{ ...styles.container, ...style }}>
+            <img
+                src={logoIcon}
+                style={{
+                    height: 60
+                }}
+            />
+            <div style={{ justifySelf: 'center' }}>
+                {children}
+            </div>
         </div>
-        <div style={{ height: 70 }} />
+        <div style={{ height: 70 }}/>
     </div>
 );
 

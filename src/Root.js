@@ -9,12 +9,12 @@ class Root extends Component {
         super(props);
 
         const config = {
-            apiKey: 'AIzaSyBmrY2PFhtZU6rAstcTmrPpenLNBeInWiM',
-            authDomain: 'trippy-fbhack.firebaseapp.com',
-            databaseURL: 'https://trippy-fbhack.firebaseio.com',
-            projectId: 'trippy-fbhack',
-            storageBucket: '',
-            messagingSenderId: '230773547653'
+            apiKey: "AIzaSyCVEXktYIe9BR_XdGoHLQtJlymxSJiH0Wc",
+            authDomain: "fb-hack-2018.firebaseapp.com",
+            databaseURL: "https://fb-hack-2018.firebaseio.com",
+            projectId: "fb-hack-2018",
+            storageBucket: "fb-hack-2018.appspot.com",
+            messagingSenderId: "542784752812"
         };
         firebase.initializeApp(config);
     }

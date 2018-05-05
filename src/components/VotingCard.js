@@ -73,7 +73,6 @@ class VotingCard extends Component {
                             readonly
                             fullSymbol={
                                 <img
-                                    className='giraffeHead'
                                     src={GiraffeHead}
                                     style={{ padding: '2px 0px', width: 32, height: 32 }}
                                 />

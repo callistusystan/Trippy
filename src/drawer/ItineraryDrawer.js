@@ -66,6 +66,7 @@ class ItineraryDrawer extends React.Component {
                             flexWrap: "wrap",
                             overflowY: "auto",
                             height: "100%",
+                            paddingBottom:20
                         }}
                     >
                     {Object.keys(itinerary).map(category => {

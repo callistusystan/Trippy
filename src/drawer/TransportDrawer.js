@@ -117,7 +117,9 @@ class TransportDrawer extends React.Component {
                             style={{height: '100%'}}
                             ranking={this.state.transportItems.length > 0 && this.state.ranking.map(({index, votes}) => {
                                 const data = this.state.transportItems[index];
-                                return {title: data.company_name, votes};
+                                const {location} = data
+                                const lat_lng = {lat:location.lat,lng:location.lon}
+                                return {title: data.company_name, votes,lat_lng};
                             })}
                             path='abc123/transport'
                         />

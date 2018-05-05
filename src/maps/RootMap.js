@@ -4,6 +4,7 @@ import {connect} from "react-redux"
 import spaghettiIcon from "../icons/spaguetti.svg";
 import landmarkIcon from '../icons/landmark.svg';
 import sleepIcon from '../icons/sleep.svg';
+import carIcon from '../icons/car.svg';
 const AnyReactComponent = ({text}) => <div style={{background: "red", width: 100, height: 100}}>{text}</div>;
 
 class RootMap extends Component {
@@ -44,7 +45,7 @@ class RootMap extends Component {
                 return
             }
             const {lat,lng} = g['lat_lng']
-            return <img lat={lat} lng={lng} src={icon} width={20} height={20}/>
+            return <img lat={lat} lng={lng} src={icon} width={30} height={30}/>
         })
     }
 
@@ -65,6 +66,7 @@ class RootMap extends Component {
                     {this.renderMarkers('eats', spaghettiIcon)}
                     {this.renderMarkers('hotel', sleepIcon)}
                     {this.renderMarkers('attraction', landmarkIcon)}
+                    {this.renderMarkers('transport', carIcon)}
                 </GoogleMapReact>
             </div>
         )

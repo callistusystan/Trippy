@@ -47,7 +47,8 @@ class AppPage extends Component {
         planeOpen: false,
         carOpen: false,
         landmarkOpen: false,
-        sleepOpen: false
+        sleepOpen: false,
+        tripName: 'Trip to San Francisco'
     };
 
     closeAllDrawers = () => new Promise((resolve) => {
@@ -104,11 +105,11 @@ class AppPage extends Component {
 
 
     render() {
-        const { calendarOpen, spaguettiOpen, planeOpen, carOpen, landmarkOpen, sleepOpen } = this.state;
+        const { calendarOpen, spaguettiOpen, planeOpen, carOpen, landmarkOpen, sleepOpen, tripName } = this.state;
         return (
             <div style={styles.container}>
                 <TopBar>
-                    <TripName name={`Pup's Buck Trip`} />
+                    <TripName onChange={event => this.setState({ tripName: event.target.value })} name={tripName} />
                 </TopBar>
                 <div style={{ width: '100%', height: 'calc(100vh - 70px)'}}>
                     <this.LeftBar/>

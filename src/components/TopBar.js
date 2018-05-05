@@ -1,15 +1,17 @@
 import React from 'react';
 import logoIcon from '../icons/logo.svg';
+import { withRouter } from 'react-router-dom';
 
-
-export default ({ children, style }) => (
+const TopBar = ({ children, history, style }) => (
     <div>
         <div style={{ ...styles.container, ...style }}>
             <img
                 src={logoIcon}
+                onClick={() => history.push('/')}
                 style={{
                     height: 60,
-                    position: 'absolute'
+                    position: 'absolute',
+                    cursor: 'pointer'
                 }}
             />
             <div style={{ display:"flex",justifyContent:"center",width:"100%"}}>
@@ -37,3 +39,5 @@ const styles = {
         color: '#333'
     }
 };
+
+export default withRouter(TopBar);

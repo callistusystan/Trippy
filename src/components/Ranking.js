@@ -12,7 +12,7 @@ class Ranking extends Component {
             return (
                 <ListItem
                     key={i}
-                    innerDivStyle={{ fontSize: 16 }}
+                    innerDivStyle={{ fontSize: 16, cursor: 'default' }}
                 >
                     <div style={{ width: '100%', display: 'flex', alignItems: 'center' }}>
                         <h3 style={{alignItems: 'center', minWidth: 32, margin: 0, marginRight: 8 }}># {i+1}</h3>

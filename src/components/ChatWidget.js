@@ -9,7 +9,7 @@ import './chatWidget.css';
 import GiraffeHead from '../images/straightgiraffeface.svg';
 
 class ChatWidget extends Component {
-
+  chatReference = firebase.database().ref('chat_msg');
   state = {"key": "cal is a god"};
   constructor(props) {
     super(props);

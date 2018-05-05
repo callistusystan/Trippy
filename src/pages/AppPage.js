@@ -60,9 +60,10 @@ class AppPage extends Component {
 
         const roomRef = firebase.database().ref('abc123');
         roomRef.on('value', snapshot => {
-            const val = snapshot.val();
-            this.setState({tripName: val.tripName || 'Trip to San Francisco'})
-        });
+                const val = snapshot.val();
+                if (val) this.setState({ tripName: val.tripName });
+                else this.setState({ tripName: 'Trip to San Francisco' });
+            });
     }
 
     DarkBackground = props => {

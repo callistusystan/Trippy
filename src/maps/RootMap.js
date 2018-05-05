@@ -18,7 +18,7 @@ class RootMap extends Component {
         this.zoominInterval = setInterval(() => this.setState({
             center: {lng: -122.4192, lat: 37.7749},
             zoom: this.state.zoom < 12 ? this.state.zoom + 0.25 : clearInterval(this.zoominInterval)
-        }), 150)
+        }), 300)
     }
 
     render() {

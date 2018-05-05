@@ -60,7 +60,7 @@ class CalendarDrawer extends React.Component {
         const disabledDays = {before: this.state.from};
         const selectedDays = [from, {from, to: enteredTo}];
         return (
-            <Drawer open={open} width={"100%"} containerStyle={{padding: 70, ...style}}>
+            <Drawer open={open} width={"100%"} containerStyle={{padding: 70, boxShadow: undefined, ...style}}>
                 <div style={{
                     background: "rgba(255,255,255,0.9)",
                     width: "100%",

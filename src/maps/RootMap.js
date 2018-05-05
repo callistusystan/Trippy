@@ -56,4 +56,4 @@ class RootMap extends Component {
     }
 }
 
-export default connect(state=>({topFood:state.rankReducer.topFood}))(RootMap)
+export default RootMap

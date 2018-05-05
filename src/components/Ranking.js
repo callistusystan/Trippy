@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Divider, ListItem } from 'material-ui';
 import Trophy from '../icons/trophy.svg';
+import {setRank} from "../actions/itineraryActions"
+import {connect} from "react-redux";
 
 class Ranking extends Component {
     constructor(props) {
@@ -8,7 +10,12 @@ class Ranking extends Component {
     }
 
     renderVoteItems = () => {
+        const category = this.props.path.split("/")[1]
+        const {ranking} = this.props
+        console.log(category)
+        this.props.setRank(category,ranking)
         return this.props.ranking.map((item, i) => {
+
             return (
                 <ListItem
                     key={i}
@@ -54,4 +61,4 @@ class Ranking extends Component {
     }
 }
 
-export default Ranking;
+export default connect(null,{setRank})(Ranking);

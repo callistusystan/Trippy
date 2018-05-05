@@ -107,12 +107,7 @@ class FoodDrawer extends React.Component {
         }));
         Promise.all([p1, p2, p3, p4]).then(res => {
             const [x, y, z, a] = res;
-            this.setState({foodItems: [...x, ...y, ...z, ...a]}, () => {
-                if(this.state.foodItems.length>0 && this.state.ranking[0]){
-                    const topFood = this.state.foodItems[this.state.ranking[0]['index']]
-                    this.props.setTopFood(topFood)
-                }
-            });
+            this.setState({foodItems: [...x, ...y, ...z, ...a]});
 
 
         }).catch(err => {
@@ -166,10 +161,5 @@ class FoodDrawer extends React.Component {
     }
 }
 
-const setTopFood = (topFood) => ({type:"setTopFood",topFood})
 
-const mapStateToProps = state => ({
-    topFood:state.rankReducer.topFood
-})
-
-export default connect(mapStateToProps,{setTopFood})(FoodDrawer)
+export default FoodDrawer

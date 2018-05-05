@@ -17,7 +17,7 @@ const styles = {
     container: {
         width: '100%',
         height: 70,
-        backgroundColor: '#EEE',
+        backgroundColor: '#FFF',
         display: 'flex',
         alignItems: 'center',
         padding: '0px 16px',

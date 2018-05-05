@@ -17,6 +17,9 @@ class RootMap extends Component{
                 bootstrapURLKeys={{key: "AIzaSyB2KWm73tDpOV2yiIO7M7BoO-D_GIdNURM"}}
                 defaultCenter={center}
                 defaultZoom={zoom}
+                options={{
+                    disableDefaultUI: true
+                }}
             >
 
             </GoogleMapReact>

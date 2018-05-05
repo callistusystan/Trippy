@@ -1,5 +1,6 @@
 import React from "react"
 import {Card, Drawer, ListItem} from "material-ui"
+import firebase from "firebase/index";
 
 const FoodCard = props => {
     const {style,cardStyle} = props
@@ -23,6 +24,31 @@ const FoodCard = props => {
 }
 
 class FoodDrawer extends React.Component{
+
+    constructor(props){
+        super(props)
+        this.state={
+            company2eats:{},
+            foodItems:[],
+            ranking:[]
+        }
+        const facebook = firebase.database().ref('facebook_data/eat');
+        const zomato = firebase.database().ref('zomato_data');
+        const p1 = new Promise(res=>facebook.on('value', snapshot => {
+            res(snapshot.val())
+        }));
+        const p2 = new Promise(res => zomato.on('value', snapshot => {
+            res(snapshot.val())
+        }));
+        Promise.all([p1,p2]).then(res=>{
+            const [x,y] = res;
+            this.setState({ foodItems: [...x,...y] },()=>console.log(this.state.foodItems));
+
+
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
     render(){
         const {open,style} = this.props
         return(

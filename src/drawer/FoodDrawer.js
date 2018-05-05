@@ -7,6 +7,8 @@ import Ranking from "../components/Ranking";
 import FacebookIcon from "../icons/facebook.png"
 import ZomatoIcon from "../icons/zomato.svg"
 import LinesEllipsis from "react-lines-ellipsis"
+import { Rating } from 'react-rating';
+import GiraffeHead from '../images/giraffe-head.svg';
 
 
 const FoodCard = props => {
@@ -23,6 +25,12 @@ const FoodCard = props => {
                     padding: 10,
                     ...cardStyle
                 }}
+                actionComponent={
+                    <Rating
+                        placeholderRating={4}
+                        fullSymbol={<img src={GiraffeHead} style={{ width: 32, height: 32 }} />}
+                    />
+                }
             >
                 <div style={{display: "flex", width: "100%", alignItems: "center", padding:5,height:41}}>
                     <span style={{letterSpacing: 1}}>{props.name}</span>
@@ -79,7 +87,7 @@ class FoodDrawer extends React.Component {
         }));
         Promise.all([p1, p2]).then(res => {
             const [x, y] = res;
-            this.setState({foodItems: [...x, ...y]}, () => console.log(this.state.foodItems));
+            this.setState({companyItems: [...x, ...y]}, () => console.log(this.state.foodItems));
 
 
         }).catch(err => {
@@ -118,10 +126,6 @@ class FoodDrawer extends React.Component {
                             })}
                             path='abc123/eats'
                         />
-                        {/*<div style={{minWidth:200,background:"rgba(255,255,255,0.8)",padding:10,height:"100%",overflowY:"scroll"}}>*/}
-                        {/*<span style={{letterSpacing:2,color:"#777777"}}>Ranking</span>*/}
-                        {/*{this.state.foodItems.map((v,i)=><ListItem innerDivStyle={{fontSize:10}}>#{i+1} Gami Dinner</ListItem>)}*/}
-                        {/*</div>*/}
                     </div>
                 </div>
             </Drawer>

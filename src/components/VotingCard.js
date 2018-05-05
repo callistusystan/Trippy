@@ -17,7 +17,7 @@ class VotingCard extends Component {
 
     render() {
         const { voted } = this.state;
-        const { children, path, style } = this.props;
+        const { children, path, actionComponent, style } = this.props;
         return (
             <div
                 style={{
@@ -36,7 +36,7 @@ class VotingCard extends Component {
             >
                 {children}
                 <div style={{flex:1}}/>
-                <div className={'pointer'} style={{position:"relative",bottom:0,right:0,display: 'flex', justifyContent: 'flex-end'}}>
+                <div className={'pointer'} style={{position:"relative",bottom:0,right:0,display: 'flex', justifyContent: 'space-between'}}>
                     {
                         voted ?
                             <img
@@ -56,6 +56,7 @@ class VotingCard extends Component {
                                 style={{ width: 32, height: 32, cursor: "pointer" }}
                             />
                     }
+                    {actionComponent && actionComponent}
                 </div>
             </div>
         );

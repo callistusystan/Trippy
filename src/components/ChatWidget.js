@@ -23,6 +23,25 @@ class ChatWidget extends Component {
     }, () => { this.chatReference.child(genkey).set(newMessage) });
   };
 
+  handleIfAddLinkOrStandardMessage = (data) => {
+    if (data.startsWith("http")) {
+      console.log("HERE!");
+      // Assume it is a link.
+      const tokens = data.split(' ');
+      let title = "";
+      if (tokens.length > 1) {
+        // Can form title.
+        title = tokens.slice(1, tokens.length).join(' ');
+      } else {
+        title = 'Here is a link!';
+      }
+      const url = tokens[0];
+      addLinkSnippet({"title": title, "link": url, "target": url});
+    } else {
+      addResponseMessage(data);
+    }
+  };
+
   componentDidMount() {
     console.log(this.props);
 
@@ -34,23 +53,7 @@ class ChatWidget extends Component {
         return;
       }
       const data = snapshot.val();
-      console.log("child_added, data: " + data);
-      if (data.startsWith("http")) {
-        console.log("HERE!");
-        // Assume it is a link.
-        const tokens = data.split(' ');
-        let title = "";
-        if (tokens.length > 1) {
-          // Can form title.
-          title = tokens.slice(1, tokens.length - 1).join(' ');
-        } else {
-          title = 'Here is a link!';
-        }
-        const url = tokens[0];
-        addLinkSnippet({"title": title, "link": url, "target": url});
-      } else {
-        addResponseMessage(snapshot.val());
-      }
+      this.handleIfAddLinkOrStandardMessage(data);
     }).bind(this);
   }
 

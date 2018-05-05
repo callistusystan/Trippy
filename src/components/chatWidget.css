@@ -28,3 +28,7 @@
 .message > .response > .message-text p {
     word-wrap: break-word;
 }
+
+.snippet {
+    word-wrap: break-word;
+}

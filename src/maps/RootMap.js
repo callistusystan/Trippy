@@ -12,6 +12,7 @@ class RootMap extends Component{
     render(){
         const {center,zoom} = this.state
         return(
+            <div style={{width:"100%",height:"100%"}}>
             <GoogleMapReact
                 bootstrapURLKeys={{key: "AIzaSyB2KWm73tDpOV2yiIO7M7BoO-D_GIdNURM"}}
                 defaultCenter={center}
@@ -19,6 +20,7 @@ class RootMap extends Component{
             >
 
             </GoogleMapReact>
+            </div>
         )
     }
 }

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-
+import AppMap from "../maps/RootMap"
 class AppPage extends Component {
 
     render() {
         const { match } = this.props;
         return (
             <div style={styles.container}>
-                <h1>App Page: {match.params.id}</h1>
+                <AppMap/>
             </div>
         );
     }
@@ -15,8 +15,7 @@ class AppPage extends Component {
 const styles = {
     container: {
         width: '100%',
-        height: '100vh',
-        display: 'flex'
+        height: '100vh'
     }
 };
 

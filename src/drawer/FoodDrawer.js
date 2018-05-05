@@ -103,7 +103,6 @@ class FoodDrawer extends React.Component{
                         </div>
                         <Ranking
                             ranking={this.state.foodItems.length>0&&this.state.ranking.map(({ index, votes }) => {
-                                console.log(this.state.foodItems)
                                 const data = this.state.foodItems[index];
                                 return { title: data.name, votes };
                             })}

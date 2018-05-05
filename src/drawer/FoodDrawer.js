@@ -8,6 +8,8 @@ import FacebookIcon from "../icons/facebook.png"
 import ZomatoIcon from "../icons/zomato.svg"
 import LinesEllipsis from "react-lines-ellipsis"
 import {connect} from "react-redux"
+import { Rating } from 'react-rating';
+import GiraffeHead from '../images/giraffe-head.svg';
 
 
 const FoodCard = props => {
@@ -15,6 +17,7 @@ const FoodCard = props => {
     return (
         <div style={{display: "flex", justifyContent: "center", alignItems: "center",marginBottom:10, ...style}}>
             <VotingCard
+                rating={props.rating}
                 path={`abc123/eats/${id}`}
                 style={{
                     boxShadow: "0 0 0 0",
@@ -124,7 +127,7 @@ class FoodDrawer extends React.Component {
                             <span style={{flex: 1, minWidth: 300,}}/>
                         </div>
                         <Ranking
-                            threshold={10}
+                            threshold={5}
                             style={{height: '100%'}}
                             ranking={this.state.foodItems.length > 0 && this.state.ranking.map(({index, votes}) => {
                                 console.log(this.state.foodItems)

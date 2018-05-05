@@ -1,10 +1,10 @@
 .conversation-container > .header > .title {
     padding: 0px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 }
 .conversation-container > .header {
     background-color: #9ebe62;
-    padding: 15px;
+    padding: 10px;
 }
 
 .message > .response {
@@ -42,8 +42,4 @@
 
 .snippet {
     word-wrap: break-word;
-}
-
-.conversation-container{
-    z-index: 1400;
 }

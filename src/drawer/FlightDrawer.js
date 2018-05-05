@@ -75,7 +75,7 @@ class FlightDrawer extends React.Component {
     }
 
     renderFlightItems = () => {
-        return this.state.flightItems.map((data, i) => <FlightCard id={i} data={data} style={{ flex: 1 }}/>);
+        return this.state.flightItems.map((data,i) => <FlightCard key={i} data={data} style={{flex:1}}/>);
     };
 
     render() {

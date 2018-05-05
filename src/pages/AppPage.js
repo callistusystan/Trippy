@@ -51,6 +51,25 @@ class AppPage extends Component {
         tripName: 'Trip to San Francisco'
     };
 
+    DarkBackground = props => {
+        const { calendarOpen, spaguettiOpen, planeOpen, carOpen, landmarkOpen, sleepOpen } = this.state;
+        return(
+            <span>
+                {
+                    (calendarOpen || planeOpen || spaguettiOpen || carOpen || landmarkOpen || sleepOpen) &&
+                    <div style={{
+                        width: '100%',
+                        height: 'calc(100vh - 70px)',
+                        backgroundColor: 'rgba(0,0,0,0.2)',
+                        zIndex: 100,
+                        position: 'absolute',
+                        transition: 'all 0.2s ease-in-out'
+                    }}/>
+                }
+            </span>
+        )
+    }
+
     closeAllDrawers = () => new Promise((resolve) => {
         this.setState({
             calendarOpen: false,
@@ -60,7 +79,7 @@ class AppPage extends Component {
             landmarkOpen: false,
             sleepOpen: false
         }, () => setTimeout(() => resolve('Done'), 250));
-    });
+    }); q
 
     openDrawer = drawerName => {
         const { calendarOpen, spaguettiOpen, planeOpen, carOpen, landmarkOpen, sleepOpen } = this.state;
@@ -82,7 +101,7 @@ class AppPage extends Component {
                 display: 'flex',
                 flexDirection: 'column',
                 left: 0,
-                height: '100%',
+                height: 'calc(100vh - 70px)',
                 position: 'fixed',
                 justifyContent: 'center',
                 zIndex: 1301,
@@ -120,20 +139,7 @@ class AppPage extends Component {
                     <TransportDrawer open={carOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', backgroundColor: undefined }}/>
                     <AttractionDrawer open={landmarkOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', backgroundColor: undefined }}/>
                     <AccommodationDrawer open={sleepOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', backgroundColor: undefined }}/>
-
-                    {
-                        (calendarOpen || planeOpen || spaguettiOpen || carOpen || landmarkOpen || sleepOpen) &&
-                        <div style={{
-                            width: '100%',
-                            height: 'calc(100vh - 70px)',
-                            backgroundColor: 'rgba(0,0,0,0.2)',
-                            zIndex: 100,
-                            position: 'absolute',
-                            transition: 'all 0.2s ease-in-out'
-                        }}/>
-                    }
-
-
+                    <this.DarkBackground/>
                     <AppMap/>
                 </div>
             </div>

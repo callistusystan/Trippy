@@ -16,7 +16,7 @@ const FoodCard = props => {
                 }}
             >
                 <span style={{letterSpacing:1}}>Gami</span>
-                <img width={"100%"} src="https://knightofmalta.files.wordpress.com/2012/12/catahay-pacific-logo.png" alt=""/>
+                <img width={"100%"} src="https://www.gamichicken.com.au/images/main/gami003.jpg" alt=""/>
             </Card>
         </div>
     )

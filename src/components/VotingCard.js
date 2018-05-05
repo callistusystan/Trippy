@@ -43,7 +43,7 @@ class VotingCard extends Component {
                                     vote({ path, delta: -1 })
                                 }}
                                 src={Like}
-                                style={{ width: 32, height: 32 }}
+                                style={{ width: 32, height: 32, cursor: "pointer" }}
                             /> :
                             <img
                                 onClick={() => {
@@ -51,7 +51,7 @@ class VotingCard extends Component {
                                     vote({ path, delta: 1 })
                                 }}
                                 src={LikeShadow}
-                                style={{ width: 32, height: 32 }}
+                                style={{ width: 32, height: 32, cursor: "pointer" }}
                             />
                     }
                 </CardActions>

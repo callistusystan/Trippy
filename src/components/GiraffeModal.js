@@ -73,7 +73,7 @@ const styles = {
     container: {
         width: '100%',
         height: 'calc(100vh - 70px)',
-        backgroundColor: 'rgba(164, 162, 195, 0.25)',
+        backgroundColor: 'rgba(76, 49, 49, 0.25)',
         position: 'absolute',
         display: 'flex',
         flexDirection: 'column',

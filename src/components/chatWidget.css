@@ -43,3 +43,7 @@
 .snippet {
     word-wrap: break-word;
 }
+
+.conversation-container .close-button {
+    background-color: #9ebe62;
+}

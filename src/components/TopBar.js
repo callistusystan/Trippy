@@ -8,10 +8,11 @@ export default ({ children, style }) => (
             <img
                 src={logoIcon}
                 style={{
-                    height: 60
+                    height: 60,
+                    position: 'absolute'
                 }}
             />
-            <div style={{ justifySelf: 'center' }}>
+            <div style={{ display:"flex",justifyContent:"center",width:"100%"}}>
                 {children}
             </div>
         </div>

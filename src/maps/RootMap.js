@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import GoogleMapReact from "google-map-react";
 import {connect} from "react-redux"
-
+import spaghettiIcon from "../icons/spaguetti.svg";
+import landmarkIcon from '../icons/landmark.svg';
+import sleepIcon from '../icons/sleep.svg';
 const AnyReactComponent = ({text}) => <div style={{background: "red", width: 100, height: 100}}>{text}</div>;
 
 class RootMap extends Component {
@@ -31,6 +33,21 @@ class RootMap extends Component {
         // }
     }
 
+    renderMarkers = (group, icon) => {
+        const { itinerary } = this.props;
+        const gp = itinerary[group]
+        if(!gp){
+            return
+        }
+        return gp.map(g=>{
+            if(!g['lat_lng']){
+                return
+            }
+            const {lat,lng} = g['lat_lng']
+            return <img lat={lat} lng={lng} src={icon} width={20} height={20}/>
+        })
+    }
+
     render() {
         const {center, zoom} = this.state
         return (
@@ -45,15 +62,15 @@ class RootMap extends Component {
                         disableDefaultUI: true
                     }}
                 >
-                    {/*<AnyReactComponent*/}
-                    {/*lat={47.608013}*/}
-                    {/*lng={-122.335167}*/}
-                    {/*text={'CAL'}*/}
-                    {/*/>*/}
+                    {this.renderMarkers('eats', spaghettiIcon)}
+                    {this.renderMarkers('hotel', sleepIcon)}
+                    {this.renderMarkers('attraction', landmarkIcon)}
                 </GoogleMapReact>
             </div>
         )
     }
 }
 
-export default RootMap
+const mapStateToProps = ({ itinerary }) => ({ itinerary });
+
+export default connect(mapStateToProps)(RootMap);

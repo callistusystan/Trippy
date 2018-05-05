@@ -12,14 +12,13 @@ class Ranking extends Component {
     renderVoteItems = () => {
         const category = this.props.path.split("/")[1]
         const {ranking} = this.props
-        console.log(category)
         this.props.setRank(category,ranking)
         return this.props.ranking.map((item, i) => {
 
             return (
                 <ListItem
                     key={i}
-                    innerDivStyle={{ fontSize: 16 }}
+                    innerDivStyle={{ fontSize: 16, cursor: 'default' }}
                 >
                     <div style={{ width: '100%', display: 'flex', alignItems: 'center' }}>
                         <h3 style={{alignItems: 'center', minWidth: 32, margin: 0, marginRight: 8 }}># {i+1}</h3>

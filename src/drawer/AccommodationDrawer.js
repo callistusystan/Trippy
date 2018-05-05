@@ -127,7 +127,8 @@ class AccomodationDrawer extends React.Component {
                             style={{height: '100%'}}
                             ranking={this.state.hotelItems.length > 0 && this.state.ranking.map(({index, votes}) => {
                                 const data = this.state.hotelItems[index];
-                                return {title: data.name, votes};
+                                const {lat_lng} = data
+                                return {title: data.name, votes,lat_lng};
                             })}
                             path='abc123/hotel'
                         />

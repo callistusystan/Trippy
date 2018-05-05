@@ -86,12 +86,7 @@ class FoodDrawer extends React.Component {
                 const val = childSnapshot.val();
                 vals.push({index, votes: val.votes});
             });
-            this.setState({ranking: _.reverse(vals)},()=>{
-                if(this.state.foodItems.length>0 && this.state.ranking[0]){
-                    const topFood = this.state.foodItems[this.state.ranking[0]['index']]
-                    this.props.setTopFood(topFood)
-                }
-            });
+            this.setState({ranking: _.reverse(vals)});
         });
         const p1 = new Promise(res => facebook.on('value', snapshot => {
             res(snapshot.val())
@@ -146,7 +141,8 @@ class FoodDrawer extends React.Component {
                             style={{height: '100%'}}
                             ranking={this.state.foodItems.length > 0 && this.state.ranking.map(({index, votes}) => {
                                 const data = this.state.foodItems[index];
-                                return {title: data.name, votes};
+                                console.log(data)
+                                return {title: data.name, votes, lat_lng: data.lat_lng};
                             })}
                             path='abc123/eats'
                         />

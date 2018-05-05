@@ -11,8 +11,6 @@ import {
     TransportDrawer
 } from '../drawer';
 
-import logoIcon from '../icons/logo.svg';
-
 import calendarIcon from '../icons/calendar.svg';
 import carIcon from '../icons/car.svg';
 import landmarkIcon from '../icons/landmark.svg';

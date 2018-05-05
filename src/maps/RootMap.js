@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import GoogleMapReact from "google-map-react";
-
+const AnyReactComponent = ({ text }) => <div style={{background:"red",width:100,height:100}}>{text}</div>;
 class RootMap extends Component{
     state={
         center: {
@@ -21,7 +21,11 @@ class RootMap extends Component{
                     disableDefaultUI: true
                 }}
             >
-
+                {/*<AnyReactComponent*/}
+                    {/*lat={47.608013}*/}
+                    {/*lng={-122.335167}*/}
+                    {/*text={'CAL'}*/}
+                {/*/>*/}
             </GoogleMapReact>
             </div>
         )

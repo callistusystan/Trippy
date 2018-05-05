@@ -19,6 +19,7 @@ import sleepIcon from '../icons/sleep.svg';
 import spaguettiIcon from '../icons/spaguetti.svg';
 import TopBar from '../components/TopBar';
 import TripName from '../components/TripName';
+import ChatWidget from '../components/ChatWidget';
 
 const LeftBarButton = props => {
     const { labelName, src, onClick, active } = props;
@@ -124,12 +125,14 @@ class AppPage extends Component {
     };
 
 
+
     render() {
         const { calendarOpen, spaguettiOpen, planeOpen, carOpen, landmarkOpen, sleepOpen, tripName } = this.state;
         return (
             <div style={styles.container}>
                 <TopBar>
                     <TripName onChange={event => this.setState({ tripName: event.target.value })} name={tripName} />
+                    <ChatWidget/>
                 </TopBar>
                 <div style={{ width: '100%', height: 'calc(100vh - 70px)'}}>
                     <this.LeftBar/>

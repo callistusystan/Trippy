@@ -8,14 +8,15 @@ class Root extends Component {
     constructor(props) {
         super(props);
 
-        const config = {
-            apiKey: "AIzaSyCVEXktYIe9BR_XdGoHLQtJlymxSJiH0Wc",
-            authDomain: "fb-hack-2018.firebaseapp.com",
-            databaseURL: "https://fb-hack-2018.firebaseio.com",
-            projectId: "fb-hack-2018",
-            storageBucket: "fb-hack-2018.appspot.com",
-            messagingSenderId: "542784752812"
-        };
+        // TODO: Remove my dummy app from it and change it back.
+          var config = {
+            apiKey: "AIzaSyCuclTtf8A965Kv0I4JzBZ-O3SJKFn1ako",
+            authDomain: "david-dummy.firebaseapp.com",
+            databaseURL: "https://david-dummy.firebaseio.com",
+            projectId: "david-dummy",
+            storageBucket: "david-dummy.appspot.com",
+            messagingSenderId: "234929044078"
+          };
         firebase.initializeApp(config);
     }
 

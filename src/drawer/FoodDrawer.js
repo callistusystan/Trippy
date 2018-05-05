@@ -39,12 +39,12 @@ class FoodDrawer extends React.Component{
                                 height: "100%",
                             }}
                         >
-                            {new Array(100).fill().map(x=><FoodCard style={{flex:1}}/>)}
+                            {new Array(100).fill().map((x, i)=><FoodCard key={i} style={{flex:1}}/>)}
                             <span style={{flex:1,minWidth:300,}}/>
                         </div>
                         <div style={{minWidth:200,background:"rgba(255,255,255,0.8)",padding:10,height:"100%",overflowY:"scroll"}}>
                             <span style={{letterSpacing:2,color:"#777777"}}>Ranking</span>
-                            {new Array(10).fill().map((v,i)=><ListItem innerDivStyle={{fontSize:10}}>#{i+1} Gami Dinner</ListItem>)}
+                            {new Array(10).fill().map((v,i)=><ListItem key={i} innerDivStyle={{fontSize:10}}>#{i+1} Gami Dinner</ListItem>)}
                         </div>
                     </div>
                 </div>

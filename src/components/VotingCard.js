@@ -38,12 +38,18 @@ class VotingCard extends Component {
                     {
                         voted ?
                             <img
-                                onClick={() => vote({ path, delta: -1 })}
+                                onClick={() => {
+                                    this.setState({ voted: !voted });
+                                    vote({ path, delta: -1 })
+                                }}
                                 src={Like}
                                 style={{ width: 32, height: 32 }}
                             /> :
                             <img
-                                onClick={() => vote({ path, delta: 1 })}
+                                onClick={() => {
+                                    this.setState({ voted: !voted });
+                                    vote({ path, delta: 1 })
+                                }}
                                 src={LikeShadow}
                                 style={{ width: 32, height: 32 }}
                             />

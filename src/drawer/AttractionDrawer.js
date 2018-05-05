@@ -59,7 +59,7 @@ const AttractionCard = props => {
 class AttractionDrawer extends React.Component {
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             company2landmark: {},
             landmarkItems: [],
@@ -97,6 +97,7 @@ class AttractionDrawer extends React.Component {
 
     render() {
         const {open, style} = this.props
+        if (this.state.landmarkItems.length === 0) return <div />
         return (
             <Drawer open={open} width={"100%"} containerStyle={{padding: 70, boxShadow: undefined, ...style}}>
                 <div style={{background: "rgba(255,255,255,0.8)", width: "100%", height: "100%", padding: 20}}>
@@ -124,7 +125,6 @@ class AttractionDrawer extends React.Component {
                             threshold={5}
                             style={{height: '100%'}}
                             ranking={this.state.landmarkItems.length > 0 && this.state.ranking.map(({index, votes}) => {
-                                console.log(this.state.landmarkItems)
                                 const data = this.state.landmarkItems[index];
                                 return {title: data.name, votes};
                             })}

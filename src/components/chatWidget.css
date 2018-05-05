@@ -39,9 +39,13 @@
 }
 
 .conversation-container .header .title {
-    line-height: 0px !important;
+    line-height: 0 !important;
 }
 
-.widget-container button {
+.conversation-container {
+    z-index: 1400 !important;
+}
+
+.widget-container  button {
     cursor: pointer !important;
 }

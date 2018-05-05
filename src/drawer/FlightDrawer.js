@@ -57,6 +57,10 @@ class FlightDrawer extends React.Component {
             ranking: []
         };
 
+
+    }
+
+    componentDidMount(){
         const flightsRef = firebase.database().ref('flight_data');
         flightsRef.on('value', snapshot => {
             this.setState({ flightItems: snapshot.val() });

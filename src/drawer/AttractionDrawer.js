@@ -6,14 +6,9 @@ import VotingCard from "../components/VotingCard";
 import Ranking from "../components/Ranking";
 import FacebookIcon from "../icons/facebook.png"
 import ZomatoIcon from "../icons/zomato.svg"
-import LinesEllipsis from "react-lines-ellipsis"
-import { Rating } from 'react-rating';
-import GiraffeHead from '../images/giraffe-head.svg';
-
-
 
 const AttractionCard = props => {
-    const {style, cardStyle, id} = props
+    const {style, cardStyle, id, rating} = props
     return (
         <div style={{display: "flex", justifyContent: "center", alignItems: "center",marginBottom:10, ...style}}>
             <VotingCard
@@ -26,13 +21,7 @@ const AttractionCard = props => {
                     padding: 10,
                     ...cardStyle
                 }}
-                actionComponent={
-                    <Rating
-                        initialRating={4.5}
-                        readonly
-                        fullSymbol={<img src={GiraffeHead} style={{ width: 32, height: 32 }} />}
-                    />
-                }
+                rating={rating}
             >
                 <div style={{display: "flex", width: "100%", alignItems: "center", padding:5,height:41}}>
                     <span style={{letterSpacing: 1}}>{props.name}</span>
@@ -66,7 +55,7 @@ class AttractionDrawer extends React.Component {
         super(props)
         this.state = {
             company2landmark: {},
-            companyItems: [],
+            landmarkItems: [],
             ranking: []
         };
         const facebook = firebase.database().ref('facebook_data/attraction');
@@ -85,7 +74,8 @@ class AttractionDrawer extends React.Component {
         }));
         Promise.all([p1]).then(res => {
             const [x] = res;
-            this.setState({companyItems: [...x]}, () => console.log(this.state.companyItems));
+            console.log('X', x);
+            this.setState({landmarkItems: [...x]}, () => console.log(this.state.landmarkItems));
         }).catch(err => {
             console.log(err)
         })
@@ -107,20 +97,20 @@ class AttractionDrawer extends React.Component {
                                 height: "100%",
                             }}
                         >
-                            {this.state.companyItems.map((x, i) => <AttractionCard {...x} id={i} style={{flex: 1}}/>)}
+                            {this.state.landmarkItems.map((x, i) => <AttractionCard {...x} id={i} style={{flex: 1}}/>)}
                             <span style={{flex: 1, minWidth: 300,}}/>
                             <span style={{flex: 1, minWidth: 300,}}/>
                             <span style={{flex: 1, minWidth: 300,}}/>
                         </div>
                         <Ranking
-                            threshold={10}
+                            threshold={5}
                             style={{height: '100%'}}
-                            ranking={this.state.companyItems.length > 0 && this.state.ranking.map(({index, votes}) => {
-                                console.log(this.state.companyItems)
-                                const data = this.state.companyItems[index];
+                            ranking={this.state.landmarkItems.length > 0 && this.state.ranking.map(({index, votes}) => {
+                                console.log(this.state.landmarkItems)
+                                const data = this.state.landmarkItems[index];
                                 return {title: data.name, votes};
                             })}
-                            path='abc123/eats'
+                            path='abc123/attraction'
                         />
                     </div>
                 </div>

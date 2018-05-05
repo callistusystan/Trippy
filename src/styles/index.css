@@ -142,3 +142,8 @@ h1 {
 .pointer :hover{
     cursor:pointer;
 }
+
+.rating span span {
+    background-color: #FFF !important;
+    overflow: visible !important;
+}

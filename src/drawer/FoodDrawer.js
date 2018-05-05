@@ -7,6 +7,7 @@ import Ranking from "../components/Ranking";
 import FacebookIcon from "../icons/facebook.png"
 import ZomatoIcon from "../icons/zomato.svg"
 import LinesEllipsis from "react-lines-ellipsis"
+import {connect} from "react-redux"
 import { Rating } from 'react-rating';
 import GiraffeHead from '../images/giraffe-head.svg';
 
@@ -16,6 +17,7 @@ const FoodCard = props => {
     return (
         <div style={{display: "flex", justifyContent: "center", alignItems: "center",marginBottom:10, ...style}}>
             <VotingCard
+                rating={props.rating}
                 path={`abc123/eats/${id}`}
                 style={{
                     boxShadow: "0 0 0 0",
@@ -25,12 +27,6 @@ const FoodCard = props => {
                     padding: 10,
                     ...cardStyle
                 }}
-                actionComponent={
-                    <Rating
-                        placeholderRating={4}
-                        fullSymbol={<img src={GiraffeHead} style={{ width: 32, height: 32 }} />}
-                    />
-                }
             >
                 <div style={{display: "flex", width: "100%", alignItems: "center", padding:5,height:41}}>
                     <span style={{letterSpacing: 1}}>{props.name}</span>
@@ -67,6 +63,9 @@ class FoodDrawer extends React.Component {
             foodItems: [],
             ranking: []
         }
+    }
+
+    componentDidMount(){
         const facebook = firebase.database().ref('facebook_data/eat');
         const zomato = firebase.database().ref('zomato_data');
         const votesRef = firebase.database().ref('abc123/eats/').orderByChild('votes');
@@ -77,7 +76,12 @@ class FoodDrawer extends React.Component {
                 const val = childSnapshot.val();
                 vals.push({index, votes: val.votes});
             });
-            this.setState({ranking: _.reverse(vals)});
+            this.setState({ranking: _.reverse(vals)},()=>{
+                if(this.state.foodItems.length>0 && this.state.ranking[0]){
+                    const topFood = this.state.foodItems[this.state.ranking[0]['index']]
+                    this.props.setTopFood(topFood)
+                }
+            });
         });
         const p1 = new Promise(res => facebook.on('value', snapshot => {
             res(snapshot.val())
@@ -87,7 +91,12 @@ class FoodDrawer extends React.Component {
         }));
         Promise.all([p1, p2]).then(res => {
             const [x, y] = res;
-            this.setState({companyItems: [...x, ...y]}, () => console.log(this.state.foodItems));
+            this.setState({foodItems: [...x, ...y]}, () => {
+                if(this.state.foodItems.length>0 && this.state.ranking[0]){
+                    const topFood = this.state.foodItems[this.state.ranking[0]['index']]
+                    this.props.setTopFood(topFood)
+                }
+            });
 
 
         }).catch(err => {
@@ -96,6 +105,7 @@ class FoodDrawer extends React.Component {
     }
 
     render() {
+        console.log(this.props.topFood)
         const {open, style} = this.props
         return (
             <Drawer open={open} width={"100%"} containerStyle={{padding: 70, boxShadow: undefined, ...style}}>
@@ -117,7 +127,7 @@ class FoodDrawer extends React.Component {
                             <span style={{flex: 1, minWidth: 300,}}/>
                         </div>
                         <Ranking
-                            threshold={10}
+                            threshold={5}
                             style={{height: '100%'}}
                             ranking={this.state.foodItems.length > 0 && this.state.ranking.map(({index, votes}) => {
                                 console.log(this.state.foodItems)
@@ -126,6 +136,10 @@ class FoodDrawer extends React.Component {
                             })}
                             path='abc123/eats'
                         />
+                        {/*<div style={{minWidth:200,background:"rgba(255,255,255,0.8)",padding:10,height:"100%",overflowY:"scroll"}}>*/}
+                        {/*<span style={{letterSpacing:2,color:"#777777"}}>Ranking</span>*/}
+                        {/*{this.state.foodItems.map((v,i)=><ListItem innerDivStyle={{fontSize:10}}>#{i+1} Gami Dinner</ListItem>)}*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             </Drawer>
@@ -133,4 +147,10 @@ class FoodDrawer extends React.Component {
     }
 }
 
-export default FoodDrawer
+const setTopFood = (topFood) => ({type:"setTopFood",topFood})
+
+const mapStateToProps = state => ({
+    topFood:state.rankReducer.topFood
+})
+
+export default connect(mapStateToProps,{setTopFood})(FoodDrawer)

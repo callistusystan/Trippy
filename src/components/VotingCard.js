@@ -4,6 +4,8 @@ import { Card, CardActions } from 'material-ui';
 import Like from '../icons/like.svg';
 import LikeShadow from '../icons/like_shadow.svg';
 import { vote } from '../utils';
+import Rating from 'react-rating';
+import GiraffeHead from '../images/giraffe-head.svg';
 
 class VotingCard extends Component {
 
@@ -17,11 +19,11 @@ class VotingCard extends Component {
 
     render() {
         const { voted } = this.state;
-        const { children, path, actionComponent, style } = this.props;
+        const { children, path, rating, style } = this.props;
         return (
             <div
                 style={{
-                    background:"rgba(255,255,255,1)",
+                    background: 'rgba(255,255,255,1)',
                     boxShadow: '0 0 0 0',
                     width: '98%',
                     height: '95%',
@@ -35,28 +37,50 @@ class VotingCard extends Component {
                 }}
             >
                 {children}
-                <div style={{flex:1}}/>
-                <div className={'pointer'} style={{position:"relative",bottom:0,right:0,display: 'flex', justifyContent: 'space-between'}}>
+                <div style={{ flex: 1 }}/>
+                <div className={'pointer'} style={{
+                    position: 'relative',
+                    bottom: 0,
+                    right: 0,
+                    display: 'flex',
+                    justifyContent: 'space-between'
+                }}>
                     {
                         voted ?
                             <img
                                 onClick={() => {
                                     this.setState({ voted: !voted });
-                                    vote({ path, delta: -1 })
+                                    vote({ path, delta: -1 });
                                 }}
                                 src={Like}
-                                style={{ width: 32, height: 32, cursor: "pointer" }}
+                                style={{ width: 32, height: 32, cursor: 'pointer' }}
                             /> :
                             <img
                                 onClick={() => {
                                     this.setState({ voted: !voted });
-                                    vote({ path, delta: 1 })
+                                    vote({ path, delta: 1 });
                                 }}
                                 src={LikeShadow}
-                                style={{ width: 32, height: 32, cursor: "pointer" }}
+                                style={{ width: 32, height: 32, cursor: 'pointer' }}
                             />
                     }
-                    {actionComponent && actionComponent}
+                    {rating &&
+
+                    <div className='rating'>
+                        <Rating
+                            initialRating={rating}
+                            stop={rating}
+                            readonly
+                            fullSymbol={
+                                <img
+                                    className='giraffeHead'
+                                    src={GiraffeHead}
+                                    style={{ padding: '2px 0px', width: 32, height: 32 }}
+                                />
+                            }
+                        />
+                    </div>
+                    }
                 </div>
             </div>
         );

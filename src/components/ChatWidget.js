@@ -9,7 +9,7 @@ import './chatWidget.css';
 import GiraffeHead from '../images/straightgiraffeface.svg';
 
 class ChatWidget extends Component {
-  chatReference = firebase.database().ref('chat_msg');
+
   state = {"key": "cal is a god"};
   constructor(props) {
     super(props);
@@ -44,7 +44,7 @@ class ChatWidget extends Component {
 
   componentDidMount() {
     console.log(this.props);
-
+    this.chatReference = firebase.database().ref('chat_msg');
     // Updates chat from the server.
     this.chatReference.on('child_added', (snapshot) => {
       console.log("firebase chat: on child added: " + snapshot.val() + ", key: " + snapshot.key);

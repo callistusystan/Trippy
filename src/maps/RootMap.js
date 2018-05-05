@@ -20,8 +20,10 @@ class RootMap extends Component {
     }
 
     componentWillUpdate(props){
+        console.log(props.topFood)
         if(props.topFood){
-            const {lat_lng:{lat,lng}} = props.topFood
+            console.log(props.topFood)
+            const {lat_lng:{lat,lng}} = props.topFood[0]
             if(this.state.center.lat !== lat && this.state.center.lng !== lng){
                 this.setState({center:{lat,lng},zoom:14})
             }

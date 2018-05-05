@@ -6,7 +6,7 @@ import VotingCard from "../components/VotingCard";
 import Ranking from "../components/Ranking";
 import FacebookIcon from "../icons/facebook.png"
 import ZomatoIcon from "../icons/zomato.svg"
-import LinesEllipsis from "react-lines-ellipsis"
+import SaveIcon from "../icons/diskette.svg"
 import {connect} from "react-redux"
 
 
@@ -73,12 +73,7 @@ class FoodDrawer extends React.Component {
                 const val = childSnapshot.val();
                 vals.push({index, votes: val.votes});
             });
-            this.setState({ranking: _.reverse(vals)},()=>{
-                if(this.state.foodItems.length>0 && this.state.ranking[0]){
-                    const topFood = this.state.foodItems[this.state.ranking[0]['index']]
-                    this.props.setTopFood(topFood)
-                }
-            });
+            this.setState({ranking: _.reverse(vals)});
         });
         const p1 = new Promise(res => facebook.on('value', snapshot => {
             res(snapshot.val())
@@ -88,12 +83,7 @@ class FoodDrawer extends React.Component {
         }));
         Promise.all([p1, p2]).then(res => {
             const [x, y] = res;
-            this.setState({foodItems: [...x, ...y]}, () => {
-                if(this.state.foodItems.length>0 && this.state.ranking[0]){
-                    const topFood = this.state.foodItems[this.state.ranking[0]['index']]
-                    this.props.setTopFood(topFood)
-                }
-            });
+            this.setState({foodItems: [...x, ...y]});
 
 
         }).catch(err => {
@@ -102,12 +92,15 @@ class FoodDrawer extends React.Component {
     }
 
     render() {
-        console.log(this.props.topFood)
         const {open, style} = this.props
         return (
             <Drawer open={open} width={"100%"} containerStyle={{padding: 70, boxShadow: undefined, ...style}}>
                 <div style={{background: "rgba(255,255,255,0.8)", width: "100%", height: "100%", padding: 20}}>
-                    <span style={{letterSpacing: 1}}>SELECT FOOD</span>
+                    <div style={{display:"flex"}}>
+                        <span style={{letterSpacing: 1}}>SELECT FOOD</span>
+                        <div style={{flex:1}}/>
+                        <div onClick={this.props.closeAll} className={"pointer"}><img height={25} width={25} src={SaveIcon}/></div>
+                    </div>
                     <div style={{height: 15}}/>
                     <div style={{display: "flex", height: "95%", paddingBottom: 20}}>
                         <div

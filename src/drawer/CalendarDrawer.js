@@ -1,6 +1,6 @@
 import React from "react"
 import {Drawer} from "material-ui"
-import moment from 'moment';
+import SaveIcon from "../icons/diskette.svg"
 
 import DayPicker, {DateUtils} from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
@@ -68,7 +68,11 @@ class CalendarDrawer extends React.Component {
                     padding: 20,
                     overflowY: "scroll"
                 }}>
-                    <span style={{letterSpacing: 1}}>SELECT TRAVELLING DATES</span>
+                    <div style={{display:"flex"}}>
+                        <span style={{letterSpacing: 1}}>SELECT TRAVELLING DATES</span>
+                        <div style={{flex:1}}/>
+                        <div onClick={this.props.closeAll} className={"pointer"}><img height={25} width={25} src={SaveIcon}/></div>
+                    </div>
                     <DayPicker
                         className="Range"
                         numberOfMonths={12}

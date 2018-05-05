@@ -8,7 +8,7 @@ import FacebookIcon from "../icons/facebook.png"
 import ZomatoIcon from "../icons/zomato.svg"
 import YelpIcon from "../icons/yelp.png"
 import GoogleIcon from "../icons/google.png"
-
+import SaveIcon from "../icons/diskette.svg"
 const AttractionCard = props => {
     const {style, cardStyle, id, rating} = props
     let source;
@@ -59,7 +59,7 @@ const AttractionCard = props => {
 class AttractionDrawer extends React.Component {
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             company2landmark: {},
             landmarkItems: [],
@@ -97,10 +97,15 @@ class AttractionDrawer extends React.Component {
 
     render() {
         const {open, style} = this.props
+        if (this.state.landmarkItems.length === 0) return <div />
         return (
             <Drawer open={open} width={"100%"} containerStyle={{padding: 70, boxShadow: undefined, ...style}}>
                 <div style={{background: "rgba(255,255,255,0.8)", width: "100%", height: "100%", padding: 20}}>
-                    <span style={{letterSpacing: 1}}>SELECT LANDMARK</span>
+                    <div style={{display:"flex"}}>
+                        <span style={{letterSpacing: 1}}>SELECT LANDMARK</span>
+                        <div style={{flex:1}}/>
+                        <div onClick={this.props.closeAll} className={"pointer"}><img height={25} width={25} src={SaveIcon}/></div>
+                    </div>
                     <div style={{height: 15}}/>
                     <div style={{display: "flex", height: "95%", paddingBottom: 20}}>
                         <div
@@ -120,7 +125,6 @@ class AttractionDrawer extends React.Component {
                             threshold={5}
                             style={{height: '100%'}}
                             ranking={this.state.landmarkItems.length > 0 && this.state.ranking.map(({index, votes}) => {
-                                console.log(this.state.landmarkItems)
                                 const data = this.state.landmarkItems[index];
                                 return {title: data.name, votes};
                             })}

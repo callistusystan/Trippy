@@ -3,14 +3,14 @@ import {Drawer, FlatButton, TextField} from "material-ui"
 import SaveIcon from "../icons/diskette.svg"
 const buttonStyle ={fontWeight:200,textAlign:"left"}
 
-class TransportDrawer extends React.Component{
+class ItineraryDrawer extends React.Component{
     render(){
         const {open,style} = this.props
         return(
             <Drawer open={open} width={"100%"} containerStyle={{padding:70, boxShadow: undefined, ...style}}>
                 <div style={{background:"rgba(255,255,255,0.8)",width:"100%",height:"100%",padding:20}}>
                     <div style={{display:"flex"}}>
-                        <span style={{letterSpacing: 1}}>SELECT TRANSPORTATION</span>
+                        <span style={{letterSpacing: 1}}>BASIC ITINERARY</span>
                         <div style={{flex:1}}/>
                         <div onClick={this.props.closeAll} className={"pointer"}><img height={25} width={25} src={SaveIcon}/></div>
                     </div>
@@ -20,4 +20,4 @@ class TransportDrawer extends React.Component{
     }
 }
 
-export default TransportDrawer
+export default ItineraryDrawer

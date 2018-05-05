@@ -68,12 +68,11 @@ class VotingCard extends Component {
 
                     <div className='rating'>
                         <Rating
-                            initialRating={rating}
-                            stop={rating}
+                            initialRating={Math.min(rating, 5)}
+                            stop={Math.min(rating, 5)}
                             readonly
                             fullSymbol={
                                 <img
-                                    className='giraffeHead'
                                     src={GiraffeHead}
                                     style={{ padding: '2px 0px', width: 32, height: 32 }}
                                 />

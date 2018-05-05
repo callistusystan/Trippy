@@ -6,6 +6,8 @@ import VotingCard from "../components/VotingCard";
 import Ranking from "../components/Ranking";
 import FacebookIcon from "../icons/facebook.png"
 import ZomatoIcon from "../icons/zomato.svg"
+import YelpIcon from "../icons/yelp.png"
+import GoogleIcon from "../icons/google.png"
 import LinesEllipsis from "react-lines-ellipsis"
 import {connect} from "react-redux"
 import { Rating } from 'react-rating';
@@ -13,7 +15,12 @@ import GiraffeHead from '../images/giraffe-head.svg';
 
 
 const FoodCard = props => {
-    const {style, cardStyle, id} = props
+    const {style, cardStyle, id} = props;
+    let source;
+    if (props.source === 'Facebook') source = FacebookIcon;
+    else if (props.source === 'Zomato') source = ZomatoIcon;
+    else if (props.source === 'Yelp') source = YelpIcon;
+    else source = GoogleIcon;
     return (
         <div style={{display: "flex", justifyContent: "center", alignItems: "center",marginBottom:10, ...style}}>
             <VotingCard
@@ -31,7 +38,7 @@ const FoodCard = props => {
                 <div style={{display: "flex", width: "100%", alignItems: "center", padding:5,height:41}}>
                     <span style={{letterSpacing: 1}}>{props.name}</span>
                     <span style={{flex: 1}}/>
-                    <div className={'pointer'}><img onClick={()=>window.open(props.link,'_blank')} style={{height: 30, width: 30}} src={props.source === 'Facebook' ? FacebookIcon : ZomatoIcon}/></div>
+                    <div className={'pointer'}><img onClick={()=>window.open(props.link,'_blank')} style={{height: 30, width: 'auto'}} src={source}/></div>
                 </div>
                 <Divider/>
                 <div
@@ -68,6 +75,8 @@ class FoodDrawer extends React.Component {
     componentDidMount(){
         const facebook = firebase.database().ref('facebook_data/eat');
         const zomato = firebase.database().ref('zomato_data');
+        const google = firebase.database().ref('google_places_data/eat');
+        const yelp = firebase.database().ref('yelp_data/eat');
         const votesRef = firebase.database().ref('abc123/eats/').orderByChild('votes');
         votesRef.on('value', snapshot => {
             let vals = []
@@ -89,9 +98,15 @@ class FoodDrawer extends React.Component {
         const p2 = new Promise(res => zomato.on('value', snapshot => {
             res(snapshot.val())
         }));
-        Promise.all([p1, p2]).then(res => {
-            const [x, y] = res;
-            this.setState({foodItems: [...x, ...y]}, () => {
+        const p3 = new Promise(res => google.on('value', snapshot => {
+            res(snapshot.val())
+        }));
+        const p4 = new Promise(res => yelp.on('value', snapshot => {
+            res(snapshot.val())
+        }));
+        Promise.all([p1, p2, p3, p4]).then(res => {
+            const [x, y, z, a] = res;
+            this.setState({foodItems: [...x, ...y, ...z, ...a]}, () => {
                 if(this.state.foodItems.length>0 && this.state.ranking[0]){
                     const topFood = this.state.foodItems[this.state.ranking[0]['index']]
                     this.props.setTopFood(topFood)

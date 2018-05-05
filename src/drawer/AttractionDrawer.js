@@ -6,9 +6,16 @@ import VotingCard from "../components/VotingCard";
 import Ranking from "../components/Ranking";
 import FacebookIcon from "../icons/facebook.png"
 import ZomatoIcon from "../icons/zomato.svg"
+import YelpIcon from "../icons/yelp.png"
+import GoogleIcon from "../icons/google.png"
 
 const AttractionCard = props => {
     const {style, cardStyle, id, rating} = props
+    let source;
+    if (props.source === 'Facebook') source = FacebookIcon;
+    else if (props.source === 'Zomato') source = ZomatoIcon;
+    else if (props.source === 'Yelp') source = YelpIcon;
+    else source = GoogleIcon;
     return (
         <div style={{display: "flex", justifyContent: "center", alignItems: "center",marginBottom:10, ...style}}>
             <VotingCard
@@ -26,7 +33,7 @@ const AttractionCard = props => {
                 <div style={{display: "flex", width: "100%", alignItems: "center", padding:5,height:41}}>
                     <span style={{letterSpacing: 1}}>{props.name}</span>
                     <span style={{flex: 1}}/>
-                    <div className={'pointer'}><img onClick={()=>window.open(props.link,'_blank')} style={{height: 30, width: 30}} src={props.source === 'Facebook' ? FacebookIcon : ZomatoIcon}/></div>
+                    <div className={'pointer'}><img onClick={()=>window.open(props.link,'_blank')} style={{height: 30, width: 'auto'}} src={source}/></div>
                 </div>
                 <Divider/>
                 <div
@@ -59,6 +66,8 @@ class AttractionDrawer extends React.Component {
             ranking: []
         };
         const facebook = firebase.database().ref('facebook_data/attraction');
+        const google = firebase.database().ref('google_places_data/attraction');
+        const yelp = firebase.database().ref('yelp_data/attraction');
         const votesRef = firebase.database().ref('abc123/attraction/').orderByChild('votes');
         votesRef.on('value', snapshot => {
             let vals = [];
@@ -72,10 +81,15 @@ class AttractionDrawer extends React.Component {
         const p1 = new Promise(res => facebook.on('value', snapshot => {
             res(snapshot.val())
         }));
-        Promise.all([p1]).then(res => {
-            const [x] = res;
-            console.log('X', x);
-            this.setState({landmarkItems: [...x]}, () => console.log(this.state.landmarkItems));
+        const p2 = new Promise(res => google.on('value', snapshot => {
+            res(snapshot.val())
+        }));
+        const p3 = new Promise(res => yelp.on('value', snapshot => {
+            res(snapshot.val())
+        }));
+        Promise.all([p1, p2, p3]).then(res => {
+            const [x, y, z] = res;
+            this.setState({landmarkItems: [...x, ...y, ...z]}, () => console.log(this.state.landmarkItems));
         }).catch(err => {
             console.log(err)
         })

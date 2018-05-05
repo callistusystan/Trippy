@@ -42,8 +42,8 @@
     line-height: 0 !important;
 }
 
-.conversation-container {
-    z-index: 1400 !important;
+.widget-container * {
+    z-index: 1400000 !important;
 }
 
 .widget-container  button {

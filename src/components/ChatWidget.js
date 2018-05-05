@@ -10,10 +10,7 @@ import GiraffeHead from '../images/straightgiraffeface.svg';
 
 class ChatWidget extends Component {
   chatReference = firebase.database().ref('chat_msg');
-  state = {"key": "cal is a god", "toggleOpen": false, "unread": 4};
-
-  // unread = 4;
-  // checkUnread = true;
+  state = {"key": "cal is a god", "toggleOpen": false, "unread": 0};
 
   constructor(props) {
     super(props);

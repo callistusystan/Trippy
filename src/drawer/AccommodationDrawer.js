@@ -101,7 +101,7 @@ class AccomodationDrawer extends React.Component {
         return (
             <Drawer open={open} width={"100%"} containerStyle={{padding: 70, boxShadow: undefined, ...style}}>
                 <div style={{background: "rgba(255,255,255,0.8)", width: "100%", height: "100%", padding: 20}}>
-                    <span style={{letterSpacing: 1}}>SELECT LANDMARK</span>
+                    <span style={{letterSpacing: 1}}>SELECT ACCOMMODATION</span>
                     <div style={{height: 15}}/>
                     <div style={{display: "flex", height: "95%", paddingBottom: 20}}>
                         <div

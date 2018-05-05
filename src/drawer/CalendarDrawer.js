@@ -3,13 +3,12 @@ import {Drawer, FlatButton, TextField} from "material-ui"
 const buttonStyle ={fontWeight:200,textAlign:"left"}
 class CalendarDrawer extends React.Component{
     render(){
-        const {open} = this.props
+        const {open,style} = this.props
         return(
-            <Drawer open={open} width={"100%"} openSecondary>
-                <div style={{height:75,top:0}}/>
-                <FlatButton labelStyle={buttonStyle} label={"Generate Share Link"}/>
-                <TextField/>
-                <div style={{height:75,bottom:0}}/>
+            <Drawer open={open} width={"100%"} containerStyle={{padding:70,...style}}>
+                <div style={{background:"rgba(255,255,255,0.8)",width:"100%",height:"100%",padding:20}}>
+                    <span style={{letterSpacing:1}}>SELECT TRAVELLING DATES</span>
+                </div>
             </Drawer>
         )
     }

@@ -122,6 +122,7 @@ class FoodDrawer extends React.Component {
     render() {
         console.log(this.props.topFood)
         const {open, style} = this.props
+        if (this.state.foodItems.length === 0) return <div />;
         return (
             <Drawer open={open} width={"100%"} containerStyle={{padding: 70, boxShadow: undefined, ...style}}>
                 <div style={{background: "rgba(255,255,255,0.8)", width: "100%", height: "100%", padding: 20}}>
@@ -145,7 +146,6 @@ class FoodDrawer extends React.Component {
                             threshold={5}
                             style={{height: '100%'}}
                             ranking={this.state.foodItems.length > 0 && this.state.ranking.map(({index, votes}) => {
-                                console.log(this.state.foodItems)
                                 const data = this.state.foodItems[index];
                                 return {title: data.name, votes};
                             })}

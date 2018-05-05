@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import firebase from 'firebase';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
+import "./buttons/leftBarButton.css"
 
 class Root extends Component {
     constructor(props) {

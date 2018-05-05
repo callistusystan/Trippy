@@ -1,76 +1,101 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import AppMap from "../maps/RootMap"
-import Ripples from 'react-ripples'
-import SemiCircleButton from "../buttons/SemiCircleButton"
-import {FlatButton, RaisedButton} from "material-ui";
+import {FlatButton} from "material-ui";
 
+import CalendarDrawer from "../drawer/CalendarDrawer"
 
+import logoIcon from "../icons/logo.svg"
+
+import calendarIcon from "../icons/calendar.svg"
+import carIcon from "../icons/car.svg"
+import landmarkIcon from "../icons/landmark.svg"
+import planeIcon from "../icons/plane.svg"
+import sleepIcon from "../icons/sleep.svg"
+import spaguettiIcon from "../icons/spaguetti.svg"
+
+const LeftBarButton = props => {
+    const {labelName,src,onClick,active} = props
+    return(
+        <FlatButton
+            className={'leftBarButton'}
+            backgroundColor={"#fff"}
+            hoverColor={"#eaeaea"}
+            style={{width: 210, left: -150, height: 50, borderRadius: 0, position: "relative",}}
+            onClick={onClick}
+            secondary={active}
+        >
+            <div style={{width: '100%', display: "flex", flexDirection: "row-reverse", alignItems: "center"}}>
+                <img src={src} width={40} height={40} style={{marginRight: 10, marginLeft: 10 ,color:"red"}}/>
+                <span style={{flex: 1}}>{labelName}</span>
+            </div>
+        </FlatButton>
+    )
+}
 
 class AppPage extends Component {
 
-
-    TopBar = props => {
-        return(
-            <div style={{display:"flex",top:0,width:"100%",position:"fixed",justifyContent:"center",zIndex:1}}>
-                <span style={{flex:1}}/>
-
-                <RaisedButton style={{width:200,height:200,position:"relative",top:-100,background:"#fff"}}>
-
-                </RaisedButton>
-
-
-                <span style={{flex:1}}/>
-                <div style={{width:200,height:200,borderRadius:100,position:"relative",top:-100,background:"#fff"}}/>
-                <span style={{flex:1}}/>
-            </div>
-        )
+    state = {
+        calendarOpen: false,
+        spaguettiOpen: false,
+        planeOpen: false,
+        carOpen: false,
+        landmarkOpen: false,
+        sleepOpen: false
     }
 
-    BottomBar = props => {
-        return (
-            <div style={{display:"flex",bottom:0,width:"100%",position:"fixed",justifyContent:"center",zIndex:1}}>
-                <span style={{flex:1}}/>
-                <div style={{width:200,height:200,borderRadius:100,position:"relative",bottom:-100,zIndex:1,background:"#fff"}}/>
-                <span style={{flex:1}}/>
-                <div style={{width:200,height:200,borderRadius:100,position:"relative",bottom:-100,zIndex:1,background:"#fff"}}/>
-                <span style={{flex:1}}/>
-            </div>
-        )
+    closeAllDrawers = () => new Promise((resolve)=>{
+        this.setState({
+            calendarOpen: false,
+            spaguettiOpen: false,
+            planeOpen: false,
+            carOpen: false,
+            landmarkOpen: false,
+            sleepOpen: false
+        },resolve("Done"))
+    })
+
+    openDrawer = drawerName => {
+        if(this.state[drawerName]){
+            this.setState({[drawerName]:false})
+        }else {
+            this.closeAllDrawers().then(res => {
+                this.setState({[drawerName]:true})
+            })
+        }
     }
 
     LeftBar = props => {
+        const {calendarOpen,spaguettiOpen,planeOpen,carOpen,landmarkOpen,sleepOpen} = this.state
         return (
-            <div style={{display:"flex",flexDirection:"column",left:0,height:"100%",position:"fixed",justifyContent:"center",zIndex:1}}>
-                <span style={{flex:1}}/>
-                <div style={{width:200,height:200,borderRadius:100,position:"relative",left:-100,zIndex:1,background:"#fff"}}/>
-                <span style={{flex:1}}/>
-                <div style={{width:200,height:200,borderRadius:100,position:"relative",left:-100,zIndex:1,background:"#fff"}}/>
-                <span style={{flex:1}}/>
-            </div>
-        )
-    }
-
-    RightBar = props => {
-        return (
-            <div style={{display:"flex",flexDirection:"column",right:0,height:"100%",position:"fixed",justifyContent:"center",zIndex:1}}>
-                <span style={{flex:1}}/>
-                <div style={{width:200,height:200,borderRadius:100,position:"relative",right:-100,zIndex:1,background:"#fff"}}/>
-                <span style={{flex:1}}/>
-                <div style={{width:200,height:200,borderRadius:100,position:"relative",right:-100,zIndex:1,background:"#fff"}}/>
-                <span style={{flex:1}}/>
+            <div style={{
+                display: "flex",
+                flexDirection: "column",
+                left: 0,
+                height: "100%",
+                position: "fixed",
+                justifyContent: "center",
+                zIndex: 1301
+            }}>
+                <LeftBarButton labelName={'CALENDAR'} src={calendarIcon} active={calendarOpen} onClick={()=>this.openDrawer('calendarOpen')}/>
+                <LeftBarButton labelName={'FLIGHT'} src={planeIcon} active={planeOpen} onClick={()=>this.openDrawer('planeOpen')}/>
+                <LeftBarButton labelName={'FOOD'} src={spaguettiIcon} active={spaguettiOpen} onClick={()=>this.openDrawer('spaguettiOpen')}/>
+                <LeftBarButton labelName={'TRANSPORT'} src={carIcon} active={carOpen} onClick={()=>this.openDrawer('carOpen')}/>
+                <LeftBarButton labelName={'ATTRACTION'} src={landmarkIcon} active={landmarkOpen} onClick={()=>this.openDrawer('landmarkOpen')}/>
+                <LeftBarButton labelName={'ACCOMMODATION'} src={sleepIcon} active={sleepOpen} onClick={()=>this.openDrawer('sleepOpen')}/>
             </div>
         )
     }
 
 
     render() {
-        const { match } = this.props;
+        const {calendarOpen} = this.state
         return (
             <div style={styles.container}>
-                <this.TopBar/>
+                <img src={logoIcon} style={{height:60,top:0,left:0,zIndex:200,position:"fixed",background:"rgba(255,255,255,0.7)"}}/>
                 <this.LeftBar/>
-                <this.RightBar/>
-                <this.BottomBar/>
+                <CalendarDrawer open={calendarOpen} style={{background:"rgba(255,255,255,0.5)"}}/>
+
+
                 <AppMap/>
             </div>
         );

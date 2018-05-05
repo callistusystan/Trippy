@@ -21,11 +21,11 @@ class RootMap extends Component{
                     disableDefaultUI: true
                 }}
             >
-                <AnyReactComponent
-                    lat={47.608013}
-                    lng={-122.335167}
-                    text={'CAL'}
-                />
+                {/*<AnyReactComponent*/}
+                    {/*lat={47.608013}*/}
+                    {/*lng={-122.335167}*/}
+                    {/*text={'CAL'}*/}
+                {/*/>*/}
             </GoogleMapReact>
             </div>
         )

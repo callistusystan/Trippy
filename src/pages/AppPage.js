@@ -11,8 +11,6 @@ import {
     TransportDrawer
 } from '../drawer';
 
-import logoIcon from '../icons/logo.svg';
-
 import calendarIcon from '../icons/calendar.svg';
 import carIcon from '../icons/car.svg';
 import landmarkIcon from '../icons/landmark.svg';
@@ -117,8 +115,6 @@ class AppPage extends Component {
                     <TransportDrawer open={carOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', background: 'rgba(255,255,255,0.5)' }}/>
                     <AttractionDrawer open={landmarkOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', background: 'rgba(255,255,255,0.5)' }}/>
                     <AccommodationDrawer open={sleepOpen} style={{ marginTop: 70, height: 'calc(100vh - 70px)', background: 'rgba(255,255,255,0.5)' }}/>
-
-
                     <AppMap/>
                 </div>
             </div>

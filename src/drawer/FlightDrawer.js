@@ -1,8 +1,10 @@
 import React from "react"
+import firebase from 'firebase';
 import {Card, Drawer, ListItem} from "material-ui"
+import Ranking from '../components/Ranking';
 
 const FlightCard = props => {
-    const {style,cardStyle} = props
+    const {style,cardStyle, data} = props;
     return(
         <div style={{display:"flex",justifyContent:"center",alignItems:"center",...style}}>
             <Card
@@ -15,14 +17,32 @@ const FlightCard = props => {
                     ...cardStyle
                 }}
             >
-                <span style={{letterSpacing:1}}>Cathay</span>
-                <img width={"100%"} src="https://knightofmalta.files.wordpress.com/2012/12/catahay-pacific-logo.png" alt=""/>
+                <span style={{letterSpacing:1}}>{data.airline}</span>
+                <img width={"100%"} src={data.airline_img} alt=""/>
             </Card>
         </div>
     )
 }
 
 class FlightDrawer extends React.Component{
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            flightItems: []
+        };
+
+        const flightsRef = firebase.database().ref('flight_data');
+        flightsRef.on('value', snapshot => {
+                this.setState({ flightItems: snapshot.val() });
+            });
+    }
+
+    renderFlightItems = () => {
+        return this.state.flightItems.map(data => <FlightCard data={data} style={{flex:1}}/>);
+    };
+
     render(){
         const {open,style} = this.props
         return(
@@ -39,13 +59,14 @@ class FlightDrawer extends React.Component{
                                 height: "100%",
                             }}
                         >
-                            {new Array(100).fill().map(x=><FlightCard style={{flex:1}}/>)}
+                            {this.renderFlightItems()}
+                            <span style={{flex:1,minWidth:300,}}/>
+                            <span style={{flex:1,minWidth:300,}}/>
                             <span style={{flex:1,minWidth:300,}}/>
                         </div>
-                        <div style={{minWidth:200,background:"rgba(255,255,255,0.8)",padding:10,height:"100%",overflowY:"scroll"}}>
-                            <span style={{letterSpacing:2,color:"#777777"}}>Ranking</span>
-                            {new Array(10).fill().map((v,i)=><ListItem innerDivStyle={{fontSize:10}}>#{i+1} Cathay Pacific 7/5/18</ListItem>)}
-                        </div>
+                        <Ranking
+                            path='abc123/flights'
+                        />
                     </div>
                 </div>
             </Drawer>

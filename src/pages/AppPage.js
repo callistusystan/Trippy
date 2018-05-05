@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import AppMap from "../maps/RootMap"
 import {FlatButton} from "material-ui";
 
-import CalendarDrawer from "../drawer/CalendarDrawer"
+import {AttractionDrawer,AccommodationDrawer,CalendarDrawer,FlightDrawer,FoodDrawer,TransportDrawer} from "../drawer"
 
 import logoIcon from "../icons/logo.svg"
 
@@ -51,16 +51,19 @@ class AppPage extends Component {
             carOpen: false,
             landmarkOpen: false,
             sleepOpen: false
-        },resolve("Done"))
+        },()=>setTimeout(()=>resolve("Done"),250))
     })
 
     openDrawer = drawerName => {
+        const {calendarOpen,spaguettiOpen,planeOpen,carOpen,landmarkOpen,sleepOpen} = this.state
         if(this.state[drawerName]){
             this.setState({[drawerName]:false})
-        }else {
+        }else if(calendarOpen||spaguettiOpen||planeOpen||carOpen||landmarkOpen||sleepOpen){
             this.closeAllDrawers().then(res => {
                 this.setState({[drawerName]:true})
             })
+        }else{
+            this.setState({[drawerName]:true})
         }
     }
 
@@ -88,12 +91,17 @@ class AppPage extends Component {
 
 
     render() {
-        const {calendarOpen} = this.state
+        const {calendarOpen,spaguettiOpen,planeOpen,carOpen,landmarkOpen,sleepOpen} = this.state
         return (
             <div style={styles.container}>
                 <img src={logoIcon} style={{height:60,top:0,left:0,zIndex:200,position:"fixed",background:"rgba(255,255,255,0.7)"}}/>
                 <this.LeftBar/>
                 <CalendarDrawer open={calendarOpen} style={{background:"rgba(255,255,255,0.5)"}}/>
+                <FlightDrawer open={planeOpen} style={{background:"rgba(255,255,255,0.5)"}}/>
+                <FoodDrawer open={spaguettiOpen} style={{background:"rgba(255,255,255,0.5)"}}/>
+                <TransportDrawer open={carOpen} style={{background:"rgba(255,255,255,0.5)"}}/>
+                <AttractionDrawer open={landmarkOpen} style={{background:"rgba(255,255,255,0.5)"}}/>
+                <AccommodationDrawer open={sleepOpen} style={{background:"rgba(255,255,255,0.5)"}}/>
 
 
                 <AppMap/>

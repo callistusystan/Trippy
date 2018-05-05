@@ -130,14 +130,16 @@ class AppPage extends Component {
                                onClick={() => this.openDrawer('calendarOpen')}/>
                 <LeftBarButton labelName={'FLIGHT'} src={planeIcon} active={planeOpen}
                                onClick={() => this.openDrawer('planeOpen')}/>
-                <LeftBarButton labelName={'FOOD'} src={spaguettiIcon} active={spaguettiOpen}
-                               onClick={() => this.openDrawer('spaguettiOpen')}/>
-                <LeftBarButton labelName={'TRANSPORT'} src={carIcon} active={carOpen}
-                               onClick={() => this.openDrawer('carOpen')}/>
-                <LeftBarButton labelName={'ATTRACTION'} src={landmarkIcon} active={landmarkOpen}
-                               onClick={() => this.openDrawer('landmarkOpen')}/>
                 <LeftBarButton labelName={'ACCOMMODATION'} src={sleepIcon} active={sleepOpen}
                                onClick={() => this.openDrawer('sleepOpen')}/>
+                <LeftBarButton labelName={'TRANSPORT'} src={carIcon} active={carOpen}
+                               onClick={() => this.openDrawer('carOpen')}/>
+                <LeftBarButton labelName={'FOOD'} src={spaguettiIcon} active={spaguettiOpen}
+                               onClick={() => this.openDrawer('spaguettiOpen')}/>
+                <LeftBarButton labelName={'ATTRACTION'} src={landmarkIcon} active={landmarkOpen}
+                               onClick={() => this.openDrawer('landmarkOpen')}/>
+                <LeftBarButton labelName={'TRANSPORT'} src={carIcon} active={carOpen}
+                               onClick={() => this.openDrawer('carOpen')}/>
                 <LeftBarButton labelName={'ITINERARY'} src={documentIcon} active={itineraryOpen}
                                onClick={() => this.openDrawer('itineraryOpen')}/>
             </div>

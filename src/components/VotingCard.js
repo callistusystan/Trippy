@@ -74,7 +74,7 @@ class VotingCard extends Component {
                             fullSymbol={
                                 <img
                                     src={GiraffeHead}
-                                    style={{ padding: '2px 0px', width: 32, height: 32 }}
+                                    style={{ padding: '2px 0px', width: 32, height: 32, cursor: 'default' }}
                                 />
                             }
                         />

@@ -5,6 +5,7 @@ import { Divider, ListItem } from 'material-ui';
 import { Widget, addResponseMessage } from 'react-chat-widget';
 
 import 'react-chat-widget/lib/styles.css';
+import Giraffe from '../images/giraffe.svg';
 
 class ChatWidget extends Component {
   chatReference = firebase.database().ref('chat_msg_4_reals');
@@ -44,7 +45,7 @@ class ChatWidget extends Component {
         <Widget
           title={'bleeh'}
           subtitle={'chat to friends!'}
-          profileAvatar={'http://www.clker.com/cliparts/I/K/X/S/8/a/cartoon-chicken-md.png'}
+          profileAvatar={Giraffe}
           handleNewUserMessage={this.handleNewUserMessage}
           autofocus={true}
           badge={2}

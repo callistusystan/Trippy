@@ -1,12 +1,19 @@
+import _ from 'lodash';
 import React from "react"
-import {Card, Drawer, ListItem} from "material-ui"
+import {Card, Divider, Drawer, ListItem} from "material-ui"
 import firebase from "firebase/index";
+import VotingCard from "../components/VotingCard";
+import Ranking from "../components/Ranking";
+import FacebookIcon from "../icons/facebook.png"
+import ZomatoIcon from "../icons/zomato.svg"
+
 
 const FoodCard = props => {
-    const {style,cardStyle} = props
+    const {style,cardStyle,id} = props
     return(
         <div style={{display:"flex",justifyContent:"center",alignItems:"center",...style}}>
-            <Card
+            <VotingCard
+                path={`abc123/eats/${id}`}
                 style={{
                     boxShadow:"0 0 0 0",
                     width:"98%",
@@ -16,9 +23,23 @@ const FoodCard = props => {
                     ...cardStyle
                 }}
             >
-                <span style={{letterSpacing:1}}>Gami</span>
-                <img width={"100%"} src="https://www.gamichicken.com.au/images/main/gami003.jpg" alt=""/>
-            </Card>
+                <div style={{display:"flex",width:"100%"}}>
+                <span style={{letterSpacing:1}}>{props.name}</span>
+                    <span style={{flex:1}}/>
+                    <img style={{height:30,width:30}} src={props.source==='Facebook'?FacebookIcon:ZomatoIcon}/>
+                </div>
+                <Divider />
+                <div
+                    style={{
+                        height: 100,
+                        width: '100%',
+                        background: `url(${props.img_url})`,
+                        backgroundSize: 'contain',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat'
+                    }}
+                />
+            </VotingCard>
         </div>
     )
 }
@@ -34,6 +55,16 @@ class FoodDrawer extends React.Component{
         }
         const facebook = firebase.database().ref('facebook_data/eat');
         const zomato = firebase.database().ref('zomato_data');
+        const votesRef = firebase.database().ref('abc123/eats/').orderByChild('votes');
+        votesRef.on('value', snapshot => {
+            let vals = []
+            snapshot.forEach((childSnapshot)=> {
+                const index = childSnapshot.key;
+                const val = childSnapshot.val();
+                vals.push({ index, votes: val.votes });
+            });
+            this.setState({ ranking: _.reverse(vals) });
+        });
         const p1 = new Promise(res=>facebook.on('value', snapshot => {
             res(snapshot.val())
         }));
@@ -65,13 +96,23 @@ class FoodDrawer extends React.Component{
                                 height: "100%",
                             }}
                         >
-                            {new Array(100).fill().map((x, i)=><FoodCard key={i} style={{flex:1}}/>)}
+                            {this.state.foodItems.map((x,i)=><FoodCard {...x} id={i} style={{flex:1}}/>)}
+                            <span style={{flex:1,minWidth:300,}}/>
+                            <span style={{flex:1,minWidth:300,}}/>
                             <span style={{flex:1,minWidth:300,}}/>
                         </div>
-                        <div style={{minWidth:200,background:"rgba(255,255,255,0.8)",padding:10,height:"100%",overflowY:"scroll"}}>
-                            <span style={{letterSpacing:2,color:"#777777"}}>Ranking</span>
-                            {new Array(10).fill().map((v,i)=><ListItem key={i} innerDivStyle={{fontSize:10}}>#{i+1} Gami Dinner</ListItem>)}
-                        </div>
+                        <Ranking
+                            ranking={this.state.foodItems.length>0&&this.state.ranking.map(({ index, votes }) => {
+                                console.log(this.state.foodItems)
+                                const data = this.state.foodItems[index];
+                                return { title: data.name, votes };
+                            })}
+                            path='abc123/eats'
+                        />
+                        {/*<div style={{minWidth:200,background:"rgba(255,255,255,0.8)",padding:10,height:"100%",overflowY:"scroll"}}>*/}
+                            {/*<span style={{letterSpacing:2,color:"#777777"}}>Ranking</span>*/}
+                            {/*{this.state.foodItems.map((v,i)=><ListItem innerDivStyle={{fontSize:10}}>#{i+1} Gami Dinner</ListItem>)}*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             </Drawer>

@@ -5,10 +5,7 @@ const AnyReactComponent = ({text}) => <div style={{background: "red", width: 100
 
 class RootMap extends Component {
     state = {
-        center: {
-            lat: 0,
-            lng: 0
-        },
+        center: {lng: -122.4192, lat: 37.7749},
         zoom: 1
     }
 

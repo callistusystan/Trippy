@@ -5,30 +5,17 @@ import { Divider, ListItem } from 'material-ui';
 class Ranking extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            voteItems: []
-        };
-    }
-
-    componentDidMount() {
-        console.log(this.props);
-        const dataRef = firebase.database().ref(this.props.path);
-        dataRef.once('value')
-            .then(snapshot => {
-                this.setState({ voteItems: snapshot.val() || [] });
-            })
-            .catch(e => console.log(e));
     }
 
     renderVoteItems = () => {
-        return this.state.voteItems.map((voteItem, i) => {
+        return this.props.ranking.map((item, i) => {
             return (
                 <ListItem
                     key={i}
                     innerDivStyle={{ fontSize: 10 }}
                 >
-
+                    {item.title}
+                    {item.votes}
                 </ListItem>
             );
         });
@@ -48,9 +35,9 @@ class Ranking extends Component {
                 <Divider/>
                 <div style={{ flex: 1, padding: 8 }}>
                     {
-                        this.state.voteItems.length > 0 ?
+                        this.props.ranking.length > 0 ?
                             this.renderVoteItems() :
-                            <h3>No items to vote for!</h3>
+                            <h3>Vote for something!</h3>
                     }
                 </div>
             </div>

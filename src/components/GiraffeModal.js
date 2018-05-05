@@ -21,6 +21,7 @@ class GiraffeModal extends Component {
         const { searchTerm, loading } = this.state;
         return (
             <div style={styles.container}>
+                <h1 style={{ color: '#FFF', fontSize: 48, margin: 0 }}>Real-time trip planning with friends!</h1>
                 <div style={styles.giraffeContainer}>
                     <img src={Giraffe} style={styles.giraffe}/>
                     <form style={styles.form}>
@@ -76,6 +77,7 @@ const styles = {
         position: 'absolute',
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'center',
         alignItems: 'center'
     },
     giraffeContainer: {
@@ -99,7 +101,7 @@ const styles = {
     },
     textFieldContainer: {
         padding: '8px 16px',
-        backgroundColor: 'rgba(0,0,0,0.2)',
+        backgroundColor: 'rgba(0,0,0,0.1)',
         display: 'flex',
         alignItems: 'center',
         marginTop: 8,

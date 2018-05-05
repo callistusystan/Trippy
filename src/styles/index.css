@@ -9,3 +9,8 @@
 }
 
 .grow:hover { transform: scale(1.04); }
+
+
+h1 {
+    margin: 0;
+}

@@ -4,7 +4,6 @@ import {connect} from "react-redux"
 import spaghettiIcon from "../icons/spaguetti.svg";
 import landmarkIcon from '../icons/landmark.svg';
 import sleepIcon from '../icons/sleep.svg';
-import carIcon from '../icons/car.svg';
 const AnyReactComponent = ({text}) => <div style={{background: "red", width: 100, height: 100}}>{text}</div>;
 
 class RootMap extends Component {
@@ -18,7 +17,7 @@ class RootMap extends Component {
     componentDidMount() {
         this.zoominInterval = setInterval(() => this.setState({
             center: {lng: -122.4192, lat: 37.7749},
-            zoom: this.state.zoom < 12 ? this.state.zoom + 0.25 : clearInterval(this.zoominInterval)
+            zoom: this.state.zoom < 14 ? this.state.zoom + 0.25 : clearInterval(this.zoominInterval)
         }), 150)
     }
 
@@ -45,7 +44,7 @@ class RootMap extends Component {
                 return
             }
             const {lat,lng} = g['lat_lng']
-            return <img lat={lat} lng={lng} src={icon} width={30} height={30}/>
+            return <img lat={lat} lng={lng} src={icon} width={20} height={20}/>
         })
     }
 
@@ -66,7 +65,6 @@ class RootMap extends Component {
                     {this.renderMarkers('eats', spaghettiIcon)}
                     {this.renderMarkers('hotel', sleepIcon)}
                     {this.renderMarkers('attraction', landmarkIcon)}
-                    {this.renderMarkers('transport', carIcon)}
                 </GoogleMapReact>
             </div>
         )

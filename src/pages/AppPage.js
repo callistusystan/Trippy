@@ -132,8 +132,6 @@ class AppPage extends Component {
                                onClick={() => this.openDrawer('planeOpen')}/>
                 <LeftBarButton labelName={'ACCOMMODATION'} src={sleepIcon} active={sleepOpen}
                                onClick={() => this.openDrawer('sleepOpen')}/>
-                <LeftBarButton labelName={'TRANSPORT'} src={carIcon} active={carOpen}
-                               onClick={() => this.openDrawer('carOpen')}/>
                 <LeftBarButton labelName={'FOOD'} src={spaguettiIcon} active={spaguettiOpen}
                                onClick={() => this.openDrawer('spaguettiOpen')}/>
                 <LeftBarButton labelName={'ATTRACTION'} src={landmarkIcon} active={landmarkOpen}

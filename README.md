@@ -13,21 +13,21 @@ This project was made with React, Redux, Python and Firebase
 
 ## Demo
 
-Feel free to try our app out via http://fb-hack-2018.firebaseapp.com/app/abc123
+Feel free to try our app out host on [:fire:base](http://fb-hack-2018.firebaseapp.com/app/abc123)
 
 
 ## Development Team
-- David Copley
-- David Lei
-- Joanna Lee
-- Callistus Tan
+- [David Copley](https://github.com/davidcopley)
+- [David Lei](https://github.com/darvid7)
+- [Joanna Lee](https://github.com/joannag6)
+- [Callistus Tan](https://github.com/callistusystan)
 
 
 ## Screenshots
 
-<img src="/screenshots/screenshot1.png" width="100%">
-<img src="/screenshots/screenshot2.png" width="100%">
-<img src="/screenshots/screenshot3.png" width="100%">
+<img src="/screenshots/screenshot1.png" width="480">
+<img src="/screenshots/screenshot2.png" width="480">
+<img src="/screenshots/screenshot3.png" width="480">
 
 
 ### Usage ###

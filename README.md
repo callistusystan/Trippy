@@ -1,8 +1,8 @@
 # Trippy
 
-This project won <strong>FIRST PLACE</strong> for the Facebook Melbourne Hack in 2018.
+:airplane::hotel::pizza::triangular_flag_on_post::taxi:
 
-:airplane: :hotel: :pizza: :triangular_flag_on_post: :taxi:
+This project won <strong>FIRST PLACE</strong> for the Facebook Melbourne Hack in 2018.
 
 The concept is an real-time platform for family or a groups of friends to plan a trip! It lists all the flights, accommodations, eateries, landmarks, car rentals which are populated using Facebook Graph API, Google Places API, Yelp and Zomato. These come with details like ratings, costs, photos and user reviews. 
 

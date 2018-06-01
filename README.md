@@ -12,10 +12,10 @@ This project was made with React, Redux, Python and Firebase
 
 
 ## Demo
- 	 
-Feel free to try our app out hosted on :fire:[firebase http://fb-hack-2018.firebaseapp.com/app/abc123](http://fb-hack-2018.firebaseapp.com/app/abc123):fire:
- 	 
- 	 
+
+Feel free to try out our [app hosted on firebase](http://fb-hack-2018.firebaseapp.com/app/abc123):fire:
+
+
 ## Development Team
 - [David Copley](https://github.com/davidcopley)
 - [David Lei](https://github.com/darvid7)

@@ -12,15 +12,16 @@ This project was made with React, Redux, Python and Firebase
 
 
 ## Demo
-
-Feel free to try our app out via http://fb-hack-2018.firebaseapp.com/app/abc123
-
-
+ 	 
+Feel free to try our app out hosted on [:fire:base](http://fb-hack-2018.firebaseapp.com/app/abc123)
+ 	 
+ 	 
 ## Development Team
-- David Copley
-- David Lei
-- Joanna Lee
-- Callistus Tan
+-- [David Copley](https://github.com/davidcopley)
+-- [David Lei](https://github.com/darvid7)
+-- Joanna Lee](https://github.com/joannag6)
+-- [Callistus Tan](https://github.com/callistusystan)
+
 
 
 ## Screenshots

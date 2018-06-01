@@ -25,9 +25,9 @@ Feel free to try our app out via http://fb-hack-2018.firebaseapp.com/app/abc123
 
 ## Screenshots
 
-<img src="/screenshots/screenshot1.png" width="480">
-<img src="/screenshots/screenshot2.png" width="480">
-<img src="/screenshots/screenshot3.png" width="480">
+<img src="/screenshots/screenshot1.png" width="100%">
+<img src="/screenshots/screenshot2.png" width="100%">
+<img src="/screenshots/screenshot3.png" width="100%">
 
 
 ### Usage ###
